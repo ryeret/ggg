@@ -2442,7 +2442,7 @@
       const deltaY = currentY - startY;
       productsPage.classList.remove('swipe-active');
       
-      if (deltaY > 300 && window.scrollY <= 0) {
+      if (deltaY > 100 && window.scrollY <= 0) {
         hideProductsPage();
       } else {
         // Возвращаем нормальную прозрачность если не досвайпнули
@@ -2543,12 +2543,28 @@
       loadProductsData(activeCategory, e.target.value);
     });
     
-    document.getElementById('categoriesToggle').addEventListener('click', () => {
+    document.getElementById('categoriesToggle').addEventListener('click', (e) => {
+      e.stopPropagation(); // Остановка всплытия события
       document.getElementById('categoriesDropdown').classList.toggle('active');
     });
     
     document.getElementById('sortSelect').addEventListener('change', () => {
       loadProductsData(activeCategory, document.getElementById('searchInputProducts').value);
+    });
+    
+    // Добавляем обработчики для всех элементов управления на странице товаров
+    document.querySelectorAll('.products-content > *').forEach(element => {
+      element.addEventListener('click', (e) => {
+        e.stopPropagation(); // Остановка всплытия события
+      });
+    });
+    
+    // Обработчик для всего контента страницы товаров
+    document.querySelector('.products-content').addEventListener('click', (e) => {
+      // Если клик был не по элементу управления, ничего не делаем
+      if (!e.target.closest('.segmented, .search-container, .toolbar, .categories-dropdown, .product-card')) {
+        e.stopPropagation();
+      }
     });
     
     window.filterProducts = function(category) {
