@@ -2442,7 +2442,7 @@
       const deltaY = currentY - startY;
       productsPage.classList.remove('swipe-active');
       
-      if (deltaY > 100 && window.scrollY <= 0) {
+      if (deltaY > 300 && window.scrollY <= 0) {
         hideProductsPage();
       } else {
         // Возвращаем нормальную прозрачность если не досвайпнули
