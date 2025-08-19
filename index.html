@@ -415,22 +415,23 @@
   justify-content: flex-end;
 }
     
-      /* Стили для каюты */
+    /* Стили для каюты */
     .cabinet-page {
+      display: none;
       padding-bottom: 90px;
-      max-width: 500px;
-      margin: 0 auto;
-      display: block;
     }
 
     .cabinet-container {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
       padding: 0 16px;
       box-sizing: border-box;
     }
 
     .avatar-section {
       text-align: center;
-      margin-top: 45px;
+      margin-top: 20px;
     }
 
     .avatar {
@@ -445,9 +446,6 @@
       cursor: pointer;
       transition: transform 0.3s;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .avatar:hover {
@@ -473,9 +471,6 @@
       color: #e0e0e0;
       white-space: nowrap;
       z-index: 10;
-      max-width: 80%;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .level-label {
@@ -503,8 +498,8 @@
       background-color: #1A1A1A;
       border-radius: 20px;
       padding: 20px;
-      margin: 24px auto 0;
-      width: 335px;
+      margin-top: 24px;
+      width: 100%;
       box-sizing: border-box;
     }
 
@@ -526,14 +521,9 @@
       font-weight: 500;
       font-size: 14px;
       cursor: pointer;
-      transition: all 0.3s;
     }
 
-    .card-header button:hover {
-      background-color: #3E3E3E;
-    }
-
-    .info-grid {
+.info-grid {
       display: flex;
       justify-content: space-between;
       margin-top: 18px;
@@ -580,7 +570,7 @@
       display: none;
     }
 
-    .career-button {
+.career-button {
       background-color: #121212;
       color: #e0e0e0;
       border-radius: 12px;
@@ -620,8 +610,7 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      width: 335px;
-      margin: 24px auto 0;
+      width: 100%;
     }
 
     .button-block button {
@@ -650,126 +639,55 @@
       color: #b38e1e;
     }
 
-    /* Стили для страницы расходов */
-    .expenses-page {
+    #custom-popup-overlay,
+    #career-popup-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0A0A0A;
-      color: #ffffff;
-      overflow-y: auto;
-      z-index: 1000;
-      padding: 20px;
-      box-sizing: border-box;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.85);
       display: none;
-    }
-
-    .expenses-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .expenses-title {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .back-button {
-      background: #333333;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .back-button:hover {
-      background: #444444;
-    }
-
-    .top-boxes {
-      display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-
-    .top-box {
-      background: #1A1A1A;
-      color: #ffffff;
-      padding: 12px;
-      border-radius: 12px;
-      text-align: center;
-      min-width: 120px;
-      border: 1px solid #333333;
-    }
-
-    .month-nav {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      z-index: 9999;
     }
 
-    .month-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .calendar {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 5px;
-      margin-bottom: 20px;
+    #custom-popup, #career-popup {
       background: #1A1A1A;
+      border: 3px solid #ffffff;
+      border-radius: 18px;
+      max-width: 320px;
+      padding: 24px 28px;
+      text-align: center;
+      color: #ffffff;
+      box-shadow: 0 0 15px #ffffff;
+      font-weight: 600;
+      user-select: none;
     }
 
-    .calendar th {
-      text-align: center;
-      padding: 8px;
-      color: #cccccc;
+    #custom-popup h2, #career-popup h2 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      color: #ffffff;
+      text-shadow: 0 0 5px #cccccc;
     }
 
-    .calendar td {
-      text-align: center;
-      padding: 10px;
-      border-radius: 8px;
-      background: #2E2E2E;
+    #custom-popup p, #career-popup p {
+      font-size: 16px;
+      color: #ffffff;
+      margin: 0 0 24px 0;
+      white-space: pre-line;
+      font-weight: 400;
+    }
+
+    #custom-popup button, #career-popup button {
+      background: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1A1A1A;
       cursor: pointer;
-      color: #ffffff;
-      border: 1px solid #333333;
-      transition: background 0.2s;
-    }
-
-    .calendar td:hover {
-      background: #3E3E3E;
-    }
-
-    .expense-list {
-      margin-top: 20px;
-    }
-
-    .expense-item {
-      background: #1A1A1A;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      color: #ffffff;
-      border: 1px solid #333333;
-      transition: transform 0.2s;
-    }
-
-    .expense-item:hover {
-      transform: translateY(-2px);
+      box-shadow: 0 0 8px #ffffff;
     }
 
 /* Нижняя панель навигации */
@@ -1252,131 +1170,114 @@
   color: #ffffff; /* Белый текст */
   border: 1px solid #333333; /* Граница */
 }
- /* Стили для страницы управления профилем */
-    #profile-page {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #1A1A1A;
-      z-index: 1000;
-      overflow-y: auto;
-      box-sizing: border-box;
-      display: none;
-      padding: 20px;
-    }
+/* Обновленные стили для страницы профиля (инвертированные цвета) */
+#profile-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1A1A1A; /* Темный фон как у рамки */
+  border: 3px solid #0A0A0A; /* Рамка как был фон */
+  z-index: 1000;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
 
-    .profile-management-container {
-      max-width: 600px;
-      margin: 0 auto;
-      color: #ffffff;
-    }
+.profile-management-container {
+  padding: 60px 20px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #ffffff; /* Белый текст */
+}
 
-    .profile-back-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: #0A0A0A;
-      color: white;
-      border: 2px solid #1A1A1A;
-      padding: 8px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      z-index: 1001;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
+.profile-back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #0A0A0A; /* Новый цвет кнопки */
+  color: white;
+  border: 2px solid #1A1A1A; /* Граница как был фон */
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1001;
+  font-weight: 600;
+}
+/* Остальные стили из вашего кода */
+#profile-page h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
 
-    .profile-back-btn:hover {
-      background: #1A1A1A;
-    }
+#profile-page .tabs {
+  display: flex;
+  border-bottom: 1px solid #222;
+  margin-bottom: 25px;
+}
 
-    #profile-page h1 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      font-weight: bold;
-      color: #e0e0e0;
-      text-align: center;
-      padding-top: 10px;
-    }
+#profile-page .tab {
+  padding: 10px 20px;
+  color: #777;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
 
-    #profile-page .tabs {
-      display: flex;
-      border-bottom: 1px solid #222;
-      margin-bottom: 25px;
-      justify-content: center;
-    }
+#profile-page .tab.active {
+  color: #fff;
+  border-bottom: 2px solid #aaa;
+}
 
-    #profile-page .tab {
-      padding: 10px 20px;
-      color: #777;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
+#profile-page .section {
+  background-color: #111;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.4s forwards;
+}
 
-    #profile-page .tab.active {
-      color: #fff;
-      border-bottom: 2px solid #aaa;
-    }
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    #profile-page .section {
-      background-color: #111;
-      padding: 15px 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.02);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+#profile-page .section:hover {
+  background-color: #222;
+}
 
-    #profile-page .section:hover {
-      background-color: #222;
-    }
+#profile-page .profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    #profile-page .profile-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+#profile-page .profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #555;
+}
 
-    #profile-page .profile-pic {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid #555;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+#profile-page .field-block {
+  margin-bottom: 12px;
+  background-color: #1a1a1a;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
-    #profile-page .field-block {
-      margin-bottom: 12px;
-      background-color: #1a1a1a;
-      padding: 10px 12px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    #profile-page .field-block:hover {
-      background-color: #252525;
-    }
-
-    .profile-name {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .profile-label {
-      color: #aaa;
-      font-size: 14px;
-      margin-bottom: 3px;
-    }
+#profile-page .field-block:hover {
+  background-color: #252525;
+}
 
 /* Стили для страницы товаров */
 .products-page {
@@ -1606,639 +1507,6 @@
   display: none;
   grid-column: 1 / -1;
 }
- /* Новые стили для страницы пополнения */
-    #payment-page {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0A0A0A;
-      z-index: 1000;
-      overflow-y: auto;
-      display: none;
-      padding: 16px;
-      box-sizing: border-box;
-    }
-
-    .payment-container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    .payment-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-
-    .payment-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #fff;
-      text-align: center;
-      flex: 1;
-    }
-
-    .back-btn {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      padding: 8px;
-    }
-
-    .carousel-wrap {
-      margin: 14px 0 6px;
-      overflow: hidden;
-    }
-
-    .carousel {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 10px 12px 18px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent) transparent;
-    }
-
-    .carousel::-webkit-scrollbar {
-      height: 6px;
-      display: block;
-    }
-
-    .carousel::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .carousel::-webkit-scrollbar-thumb {
-      background-color: var(--accent);
-      border-radius: 3px;
-    }
-
-    .card-container {
-      perspective: 1000px;
-      flex: 0 0 auto;
-      width: clamp(200px, 75vw, 280px);
-      aspect-ratio: 85.6/53.98;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: transform 0.5s var(--ios-ease), opacity 0.3s var(--ios-ease);
-    }
-
-    .card-container.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .card-container:hover {
-      transform: translateY(-5px);
-    }
-
-    .card {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--card-radius);
-      padding: 12px;
-      background: linear-gradient(145deg,#141414,#0a0a0a);
-      border: .5px solid rgba(255,255,255,.08);
-      box-shadow: 0 10px 40px rgba(0,0,0,.55);
-      color: var(--text);
-      user-select: none;
-      backface-visibility: hidden;
-      scroll-snap-align: center;
-      transform-origin: center;
-      transition: transform 0.6s var(--ios-ease), box-shadow 0.3s var(--ios-ease);
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 50px rgba(0,0,0,.65);
-    }
-
-    .card:active {
-      animation: pulse 0.3s var(--ios-ease);
-    }
-
-    .card.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .card.unflipping {
-      animation: unflip 0.6s var(--ios-ease) forwards;
-    }
-
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      backface-visibility: hidden;
-      border-radius: var(--card-radius);
-    }
-
-    .card-back {
-      transform: rotateY(180deg);
-      background: linear-gradient(145deg, #0a0a0a, #141414);
-    }
-
-    .card-back::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      left: 0;
-      right: 0;
-      height: 40px;
-      background: rgba(0,0,0,.5);
-    }
-
-    .card-cvc {
-      align-self: flex-end;
-      margin-top: auto;
-      padding: 6px 10px;
-      background: white;
-      color: black;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 14px;
-    }
-
-    .card-number-back {
-      font-family: monospace;
-      letter-spacing: 1px;
-      font-size: 14px;
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    .card.placeholder {
-      background: #444;
-      color: #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .card .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .chip {
-      width: 36px;
-      height: 24px;
-      border-radius: 5px;
-      background: linear-gradient(145deg, rgba(255,255,255,.07), rgba(0,0,0,.18));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-    }
-
-    .network {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .number {
-      font-size: 15px;
-      letter-spacing: 1.2px;
-      font-weight: 600;
-    }
-
-    .holder {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin: 8px 0 16px;
-    }
-
-    .btn {
-      background: rgba(255,255,255,.08);
-      border: none;
-      padding: 10px 16px;
-      border-radius: var(--radius);
-      color: var(--text);
-      cursor: pointer;
-      transition: transform .1s var(--ios-ease), background .2s var(--ios-ease);
-    }
-
-    .btn:hover {
-      background: rgba(255,255,255,.12);
-    }
-
-    .btn:active {
-      transform: scale(.96);
-    }
-
-    .panel {
-      margin-top: 12px;
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: 16px;
-      border: .5px solid rgba(255,255,255,.05);
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: .5px solid rgba(255,255,255,.06);
-    }
-
-    .row:last-child {
-      border-bottom: none;
-    }
-
-    .label {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .big {
-      font-weight: 600;
-      font-size: 16px;
-    }
-
-    .input {
-      width: 315px;
-      padding: 12px 14px;
-      border-radius: var(--radius);
-      border: none;
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-size: 16px;
-      transition: box-shadow 0.3s var(--ios-ease);
-    }
-
-    .input:focus {
-      outline: none;
-      background: rgba(255,255,255,.1);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .pay {
-      margin-top: 16px;
-      width: 100%;
-      padding: 14px;
-      border-radius: var(--radius);
-      border: none;
-      background: var(--accent-gradient);
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform .08s var(--ios-ease), background .2s var(--ios-ease);
-      background-size: 200% 200%;
-      animation: gradientShift 5s ease infinite, breath 3s ease-in-out infinite;
-    }
-
-    .pay:hover {
-      background: rgba(255,255,255,.9);
-    }
-
-    .pay:active {
-      transform: scale(.96);
-    }
-
-    .pay.white {
-      background: #fff;
-      color: #000;
-      animation: none;
-    }
-
-    /* Модальное окно для добавления карты */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 0;
-      transition: opacity .3s var(--ios-ease);
-    }
-
-    .modal.show {
-      display: flex;
-      opacity: 1;
-    }
-
-    .modal-content {
-      background: #111;
-      padding: 20px;
-      border-radius: var(--radius);
-      width: 90%;
-      max-width: 400px;
-      transform: translateY(20px);
-      transition: transform .4s var(--ios-bounce), opacity .3s var(--ios-ease);
-      opacity: 0;
-    }
-
-    .modal.show .modal-content {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .modal-content input {
-      margin-bottom: 12px;
-      width: 100%;
-    }
-
-    /* Loader */
-    .loader {
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-      margin: 0 auto;
-    }
-
-    .pay.loading {
-      pointer-events: none;
-      position: relative;
-      color: transparent;
-      animation: none;
-    }
-
-    .pay.loading::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(0,0,0,.3);
-      border-radius: 50%;
-      border-top-color: #000;
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    /* Quick amount buttons */
-    .quick-amounts {
-      display: flex;
-      gap: 8px;
-      margin: 12px 0;
-    }
-
-    /* Success animation */
-    @keyframes checkmark {
-      0% { transform: scale(0); opacity: 0; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes successBackground {
-      0% { background: rgba(0,0,0,0.8); }
-      50% { background: rgba(40,60,40,0.8); }
-      100% { background: rgba(0,0,0,0.8); }
-    }
-
-    .success-checkmark {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-
-    .success-checkmark::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(0, 255, 0, 0.1);
-      animation: checkmark 0.6s var(--ios-bounce);
-    }
-
-    .success-checkmark::after {
-      content: "✓";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 40px;
-      color: #4CAF50;
-    }
-
-    .success-modal {
-      animation: successBackground 1.5s var(--ios-ease);
-    }
-
-    /* Voice input button */
-    .voice-input-btn {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: var(--muted);
-      padding: 5px;
-      transition: transform 0.2s var(--ios-ease);
-    }
-
-    .voice-input-btn:active {
-      transform: translateY(-50%) scale(0.9);
-    }
-
-    /* Form elements */
-    .form-row {
-      margin-bottom: 16px;
-      position: relative;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 12px;
-      border-radius: var(--radius);
-      border: none;
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-size: 16px;
-      transition: all 0.3s var(--ios-ease);
-    }
-
-    .form-input:focus {
-      background: rgba(255,255,255,.1);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .auto-brand {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 12px;
-      color: var(--muted);
-      opacity: 0;
-      transition: opacity 0.3s var(--ios-ease);
-    }
-
-    .auto-brand.show {
-      opacity: 1;
-    }
-
-    /* Стили для попапов карьеры */
-    #career-popup-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(10,10,10,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    #career-popup {
-      background: #1A1A1A;
-      border: 3px solid #ffffff;
-      border-radius: 18px;
-      max-width: 320px;
-      padding: 24px 28px;
-      text-align: center;
-      color: #ffffff;
-      box-shadow: 0 0 15px #ffffff;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    #career-popup h2 {
-      margin: 0 0 16px 0;
-      font-size: 20px;
-      color: #ffffff;
-      text-shadow: 0 0 5px #cccccc;
-    }
-
-    #career-popup p {
-      font-size: 16px;
-      color: #ffffff;
-      margin: 0 0 24px 0;
-      white-space: pre-line;
-      font-weight: 400;
-    }
-
-    #career-popup button {
-      background: #ffffff;
-      border: none;
-      border-radius: 12px;
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: 700;
-      color: #1A1A1A;
-      cursor: pointer;
-      box-shadow: 0 0 8px #ffffff;
-    }
-
-    /* Анимации */
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes breath {
-      0%, 100% { box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3); }
-      50% { box-shadow: 0 4px 25px rgba(0, 122, 255, 0.5); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.95); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes unflip {
-      0% { transform: rotateY(180deg); }
-      100% { transform: rotateY(0deg); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes scaleIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    /* Payment animation */
-    @keyframes paymentSuccess {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 122, 255, 0.5); }
-      100% { transform: scale(1); }
-    }
-
-    .payment-success {
-      animation: paymentSuccess 0.6s var(--ios-bounce);
-    }
-
-    /* Card holder input fix */
-    .card-holder-input {
-      text-transform: uppercase;
-    }
-
-    @media (min-width: 481px) {
-      .carousel {
-        padding-left: calc((100% - 480px)/2 + 12px);
-        padding-right: calc((100% - 480px)/2 + 12px);
-      }
-    }
   </style>
 </head>
 <body>
@@ -2358,31 +1626,31 @@
     </div>
   </div>
 
-   <!-- Страница каюты -->
-  <div id="cabinet-page" class="cabinet-page fade-in">
+  <!-- Страница каюты -->
+  <div id="cabinet-page" class="cabinet-page">
     <div class="cabinet-container">
       <div class="avatar-section">
         <div class="avatar" id="avatar">
           <!-- Аватар будет вставлен через JavaScript -->
         </div>
 
-        <div class="level-username-wrapper">
+<div class="level-username-wrapper">
           <div class="level-label" id="level-label">Юнга</div>
-          <div class="username" id="username">Загрузка...</div>
+          <div class="username" id="username"><!-- Имя будет вставлено через JavaScript --></div>
         </div>
       </div>
 
-      <div class="cabinet-card">
+<div class="cabinet-card">
         <div class="card-header">
-          <div><span id="balance">0</span> <span class="pirate-currency">P‌</span></div>
-          <button onclick="showPaymentPage()">Пополнить</button>
+          <div>1100 <span class="pirate-currency">P‌</span></div>
+          <button onclick="triggerVibration(); window.open('https://t.me/FOLLENSHAIDbot?startapp=a006ece711fd2bd0', '_blank')">Пополнить</button>
         </div>
 
         <div class="info-grid">
-          <div class="info-box clickable" onclick="showExpensesPage()">
-            Расходы<br>
-            <strong id="expenses-sum">0 <span class="pirate-currency">P</span></strong>
-          </div>
+          <div class="info-box clickable">
+  Расходы<br>
+  <strong id="expenses-sum">0 <span class="pirate-currency">P</span></strong>
+</div>
           <div class="info-box">Подключённые<br>услуги и сервисы ⚙️⚓️</div>
         </div>
 
@@ -2403,17 +1671,19 @@
         <a href="https://t.me/FOllENSHAID_bot" target="_blank" style="text-decoration: none;">
           <button type="button" onclick="triggerVibration()">Связь с поддержкой</button>
         </a>
-        <button type="button" onclick="showProfilePage()">Управление профилем</button>
+        <a href="https://t.me/FOLLENSHAIDbot?startapp=d339d82edd45176b" target="_blank" style="text-decoration: none;">
+          <button type="button" onclick="triggerVibration()">Управление профилем</button>
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- Попап для карьеры -->
-  <div id="career-popup-overlay">
-    <div id="career-popup">
-      <h2 id="career-title">Заголовок</h2>
-      <p id="career-text">Описание уровня</p>
-      <button onclick="closeCareerPopup()">Понял!</button>
+  <!-- Попапы для каюты -->
+  <div id="custom-popup-overlay">
+    <div id="custom-popup">
+      <h2>ПИРАТ, ТЫ ЕЩЕ НИЧЕГО НЕ КУПИЛ</h2>
+      <p>твоя скидка 0%\n\nЧтобы перейти на следующий уровень, соверши хотя бы 1 покупку</p>
+      <button id="close-popup-btn">Понял!</button>
     </div>
   </div>
 
@@ -2549,101 +1819,98 @@
 </div>
 
 <!-- Страница расходов -->
-  <div id="expenses-page" class="expenses-page">
-    <div class="expenses-header">
-      <button class="back-button" onclick="hideExpensesPage()">← Назад</button>
-      <div class="expenses-title">Мои расходы</div>
-      <div style="width: 80px;"></div>
+<div id="expenses-page" class="expenses-page">
+  <div class="expenses-header">
+    <button class="back-button" onclick="goBackToCabinet()">← Назад</button>
+    <div class="expenses-title">Мои расходы</div>
+    <div style="width: 80px;"></div> <!-- Для выравнивания -->
+  </div>
+
+  <div class="top-boxes">
+    <div class="top-box">
+      <div>Всего</div>
+      <div id="total-month">0 ₽</div>
     </div>
-
-    <div class="top-boxes">
-      <div class="top-box">
-        <div>Всего</div>
-        <div id="total-month">0 ₽</div>
-      </div>
-      <div class="top-box">
-        <div>Сегодня</div>
-        <div id="total-today">0 ₽</div>
-      </div>
-    </div>
-
-    <div class="month-nav">
-      <button onclick="prevMonth()">←</button>
-      <div class="month-title" id="current-month">Август 2025</div>
-      <button onclick="nextMonth()">→</button>
-    </div>
-
-    <table class="calendar">
-      <thead>
-        <tr>
-          <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
-        </tr>
-      </thead>
-      <tbody id="calendar-body"></tbody>
-    </table>
-
-    <div class="expense-list" id="expense-list">
-      <div class="expense-item">
-        <div>Покупка рома</div>
-        <div>500 P</div>
-      </div>
-      <div class="expense-item">
-        <div>Карта сокровищ</div>
-        <div>1200 P</div>
-      </div>
+    <div class="top-box">
+      <div>Сегодня</div>
+      <div id="total-today">0 ₽</div>
     </div>
   </div>
+
+  <div class="month-nav">
+    <button onclick="prevMonth()">←</button>
+    <div class="month-title" id="current-month">Август 2025</div>
+    <button onclick="nextMonth()">→</button>
+  </div>
+
+  <table class="calendar">
+    <thead>
+      <tr>
+        <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
+      </tr>
+    </thead>
+    <tbody id="calendar-body"></tbody>
+  </table>
+
+  <div class="expense-list" id="expense-list">
+    <!-- Список расходов будет здесь -->
+  </div>
+</div>
 
 <!-- Страница управления профилем -->
-  <div id="profile-page">
-    <button class="profile-back-btn" onclick="hideProfilePage()">← Назад</button>
-    
-    <div class="profile-management-container">
-      <h1>Управление профилем</h1>
+<div id="profile-page" style="display: none;">
+  <button class="profile-back-btn" onclick="goBackToCabinet()">← Назад</button>
+  
+  <div class="profile-management-container">
+    <h1>Управление профилем</h1>
 
-      <div class="tabs">
-        <div class="tab active">Основные данные</div>
-        <div class="tab">Вид профиля</div>
+    <div class="tabs">
+      <div class="tab active">Основные данные</div>
+      <div class="tab">Вид профиля</div>
+    </div>
+
+    <!-- Профиль -->
+    <div class="section profile" tabindex="0" onclick="handleProfileClick('Профиль')">
+      <div class="profile-row">
+        <div class="profile-details">
+          <div class="profile-name" id="profile-username"><!-- Имя будет вставлено через JavaScript --></div>
+          <div class="profile-label">Вольный моряк</div>
+          <div class="profile-label">Номер профиля: <span id="profile-number">•••</span></div>
+          <div class="profile-label">На FollenShaid с <span id="join-date">•••</span></div>
+        </div>
+        <div class="profile-pic" id="profile-avatar-img"><!-- Аватар будет вставлен через JavaScript --></div>
+      </div>
+    </div>
+
+    <!-- Подтверждение данных -->
+    <div class="section confirmation" tabindex="0">
+      <div class="section-title">Подтверждение данных</div>
+      <div class="field-block" tabindex="0" onclick="handleProfileClick('https://t.me/FOLLENSHAIDbot?startapp=c42bb671a2141229')">
+        <div class="field-label">Для частных лиц</div>
+        <div class="field-value">По документам, личному кабинету в банке или через Госуслуги</div>
       </div>
 
-      <div class="section profile" onclick="handleProfileClick('Профиль')">
-        <div class="profile-row">
-          <div class="profile-details">
-            <div class="profile-name" id="profile-username">Загрузка...</div>
-            <div class="profile-label">Вольный моряк</div>
-            <div class="profile-label">Номер профиля: <span id="profile-number">•••</span></div>
-            <div class="profile-label">На FollenShaid с <span id="join-date">•••</span></div>
-          </div>
-          <div class="profile-pic" id="profile-avatar-img"></div>
-        </div>
+<div class="field-block" tabindex="0" onclick="handleProfileClick('https://t.me/FOLLENSHAIDbot?startapp=22f807ee776b6229')">
+        <div class="field-label">Для самозанятых</div>
+        <div class="field-value">По профилю на Госуслугах, T-ID или Сбер ID</div>
       </div>
 
-      <div class="section confirmation">
-        <div class="section-title">Подтверждение данных</div>
-        <div class="field-block" onclick="handleProfileClick('https://t.me/FOLLENSHAIDbot?startapp=c42bb671a2141229')">
-          <div class="field-label">Для частных лиц</div>
-          <div class="field-value">По документам, личному кабинету в банке или через Госуслуги</div>
-        </div>
-
-        <div class="field-block" onclick="handleProfileClick('https://t.me/FOLLENSHAIDbot?startapp=22f807ee776b6229')">
-          <div class="field-label">Для самозанятых</div>
-          <div class="field-value">По профилю на Госуслугах, T-ID или Сбер ID</div>
-        </div>
-
-        <div class="field-block" onclick="handleProfileClick('Для юридических лиц и ИП')">
-          <div class="field-label">Для юридических лиц и ИП</div>
-          <div class="field-value">По реквизитам или личному кабинету в банке</div>
-        </div>
+      <div class="field-block" tabindex="0" onclick="handleProfileClick('Для юридических лиц и ИП')">
+        <div class="field-label">Для юридических лиц и ИП</div>
+        <div class="field-value">По реквизитам или личному кабинету в банке</div>
       </div>
+    </div>
 
-      <div class="section community" onclick="handleProfileClick('Привязка карты')">
-        <div class="section-title">Привязка банковской карты</div>
-        <div class="field-block" onclick="handleProfileClick('Введи данные')">
-          <div class="field-value">Введи данные</div>
-        </div>
+    <!-- Привязка карты -->
+    <div class="section community" tabindex="0" onclick="handleProfileClick('Привязка карты')">
+      <div class="section-title">Привязка банковской карты</div>
+      <div class="field-block" tabindex="0" onclick="handleProfileClick('Введи данные')">
+        <div class="field-value">Введи данные</div>
       </div>
     </div>
   </div>
+</div>
+
 <!-- Страница товаров -->
 <div id="products-page" class="products-page">
   <div class="products-header">
@@ -2701,122 +1968,9 @@
   </div>
 </div>
 
-<!-- Новая страница пополнения -->
-  <div id="payment-page">
-    <div class="payment-container">
-      <div class="payment-header">
-        <button class="back-btn" onclick="hidePaymentPage()">←</button>
-        <div class="payment-title">Пополнение баланса</div>
-        <div style="width:40px;"></div>
-      </div>
-
-      <!-- Карусель карт -->
-      <div class="carousel-wrap">
-        <div class="carousel" id="carousel"></div>
-      </div>
-
-      <!-- Кнопки управления -->
-      <div class="controls" aria-hidden="false">
-        <button class="btn" id="prevBtn" aria-label="Предыдущая карта">←</button>
-        <button class="btn" id="enterDataBtn" aria-label="Внести данные">Внести данные</button>
-        <button class="btn" id="nextBtn" aria-label="Следующая карта">→</button>
-      </div>
-
-      <!-- Панель с суммой пополнения -->
-      <div class="panel" aria-labelledby="amountTitle">
-        <div id="amountTitle" class="label">Сумма пополнения</div>
-        <div style="margin-top:12px;position:relative;">
-          <input id="amountInput" class="input" type="number" inputmode="decimal" placeholder="0.00" aria-label="Сумма">
-          <button id="voiceInputBtn" class="voice-input-btn" aria-label="Голосовой ввод">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path d="M12 1a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" stroke="currentColor" stroke-width="2"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Быстрый выбор суммы -->
-        <div class="quick-amounts">
-          <button class="btn quick-amount" data-amount="100">100 ₽</button>
-          <button class="btn quick-amount" data-amount="500">500 ₽</button>
-          <button class="btn quick-amount" data-amount="1000">1000 ₽</button>
-        </div>
-
-        <!-- Детали суммы -->
-        <div style="margin-top:12px">
-          <div class="row"><div class="label">Введено</div><div id="entered" class="big">0.00 ₽</div></div>
-          <div class="row"><div class="label">Комиссия</div><div id="commission" class="big">3%</div></div>
-          <div class="row"><div class="label">Чистыми</div><div id="net" class="big">0.00 ₽</div></div>
-          <div class="row"><div class="label">В USD (≈)</div><div id="usd" class="big">0.00 $</div></div>
-        </div>
-
-        <!-- Кнопка пополнения -->
-        <button id="payBtn" class="pay white" aria-label="Оплатить">Пополнить</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Модальное окно для добавления карты -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <h3 style="margin-top: 0; margin-bottom: 20px;">Введите данные карты</h3>
-      
-      <div class="form-row" style="position:relative;">
-        <label class="form-label">Номер карты</label>
-        <input id="cardNumberInput" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
-        <div id="cardBrand" class="auto-brand"></div>
-      </div>
-      
-      <div class="form-row">
-        <label class="form-label">Имя держателя</label>
-        <input id="cardHolderInput" class="form-input card-holder-input" placeholder="IVAN IVANOV">
-      </div>
-      
-      <div class="form-grid">
-        <div class="form-row">
-          <label class="form-label">Срок действия</label>
-          <input id="cardExpiryInput" class="form-input" placeholder="MM/YY" maxlength="5">
-        </div>
-        <div class="form-row">
-          <label class="form-label">CVC/CVV</label>
-          <input id="cardCvcInput" class="form-input" placeholder="123" maxlength="4" inputmode="numeric">
-        </div>
-      </div>
-      
-      <button id="deleteCardBtn" class="btn" style="margin-top: 12px; background: rgba(255,59,48,.1); color: #ff3b30;">Удалить карту</button>
-      <button id="saveCardBtn" class="pay" style="margin-top: 20px;">Сохранить карту</button>
-    </div>
-  </div>
-
-  <!-- Шаблон для модального окна успешного пополнения -->
-  <div id="successModalTemplate" style="display:none;">
-    <div class="modal-content" style="text-align:center;">
-      <div class="success-checkmark"></div>
-      <h3>Пополнение успешно!</h3>
-      <p id="successAmountText"></p>
-      <button class="pay" style="margin-top:20px;">OK</button>
-    </div>
-  </div>
-
-
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <script>
- // Основные функции
-  function triggerVibration(pattern = [50]) {
-    try {
-      if (window.Telegram?.WebApp?.HapticFeedback?.impactOccurred) {
-        Telegram.WebApp.HapticFeedback.impactOccurred('light');
-      } else if ('vibrate' in navigator) {
-        navigator.vibrate(pattern);
-      } else {
-        console.log("Vibration triggered");
-      }
-    } catch (e) {
-      console.warn('Vibration not supported', e);
-    }
-  }
-
     // Инициализация данных пользователя Telegram
     function initUserData() {
       // Проверяем, что WebApp Telegram доступен
@@ -2851,296 +2005,6 @@
         }
       }
     }
-
-     // Устанавливаем дату присоединения (примерная)
-        const joinDate = new Date(user.id * 1000);
-        document.getElementById('join-date').textContent = joinDate.toLocaleDateString('ru-RU');
-        
-        // Устанавливаем номер профиля (первые 4 цифры ID)
-        document.getElementById('profile-number').textContent = String(user.id).slice(0, 4);
-        
-        // Настраиваем кнопку "Назад" в Telegram
-        Telegram.WebApp.BackButton.show();
-        Telegram.WebApp.BackButton.onClick(handleBackButton);
-        
-      } else {
-        console.log("No user data available");
-        setupDemoData();
-      }
-    } else {
-      console.log("Not in Telegram WebApp, using demo data");
-      setupDemoData();
-    }
-
-    // Загрузка сохраненного баланса
-    const savedBalance = localStorage.getItem('userBalance');
-    if (savedBalance) {
-      document.getElementById('balance').textContent = savedBalance;
-    } else {
-      localStorage.setItem('userBalance', '0');
-      document.getElementById('balance').textContent = '0';
-    }
-  }
-
-  function setupDemoData() {
-    const username = "Капитан Джек";
-    document.getElementById('username').textContent = username;
-    document.getElementById('profile-username').textContent = username;
-    
-    const avatarElement = document.getElementById('avatar');
-    const profileAvatarElement = document.getElementById('profile-avatar-img');
-    
-    avatarElement.innerHTML = 
-      `<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="70" fill="#2E2E2E"/>
-        <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-      </svg>`;
-    
-    profileAvatarElement.innerHTML = 
-      `<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="30" fill="#2E2E2E"/>
-        <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-      </svg>`;
-    
-    document.getElementById('join-date').textContent = new Date().toLocaleDateString('ru-RU');
-    document.getElementById('profile-number').textContent = '1234';
-
-    // Загрузка сохраненного баланса
-    const savedBalance = localStorage.getItem('userBalance');
-    if (savedBalance) {
-      document.getElementById('balance').textContent = savedBalance;
-    } else {
-      localStorage.setItem('userBalance', '0');
-      document.getElementById('balance').textContent = '0';
-    }
-  }
-
-  function handleBackButton() {
-    if (document.getElementById('expenses-page').style.display === 'block') {
-      hideExpensesPage();
-    } else if (document.getElementById('profile-page').style.display === 'block') {
-      hideProfilePage();
-    } else if (document.getElementById('payment-page').style.display === 'block') {
-      hidePaymentPage();
-    } else if (document.getElementById('modal').classList.contains('show')) {
-      hideAddCardModal();
-    } else if (document.getElementById('career-popup-overlay').style.display === 'flex') {
-      closeCareerPopup();
-    }
-  }
-
-  // Управление страницами
-  function showExpensesPage() {
-    document.getElementById('expenses-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-    initExpensesCalendar();
-  }
-
-  function hideExpensesPage() {
-    document.getElementById('expenses-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showProfilePage() {
-    document.getElementById('profile-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-  }
-
-  function hideProfilePage() {
-    document.getElementById('profile-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showPaymentPage() {
-    document.getElementById('payment-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-    initPaymentPage();
-  }
-
-  function hidePaymentPage() {
-    document.getElementById('payment-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showAddCardModal() {
-    document.getElementById('modal').classList.add('show');
-    document.getElementById('cardNumberInput').focus();
-    // Очищаем поля при открытии
-    document.getElementById('cardNumberInput').value = '';
-    document.getElementById('cardHolderInput').value = '';
-    document.getElementById('cardExpiryInput').value = '';
-    document.getElementById('cardCvcInput').value = '';
-    document.getElementById('cardBrand').textContent = '';
-    document.getElementById('cardBrand').classList.remove('show');
-    triggerVibration();
-  }
-
-  function hideAddCardModal() {
-    document.getElementById('modal').classList.remove('show');
-  }
-
-  function handleProfileClick(action) {
-    triggerVibration();
-    if (typeof action === 'string' && action.startsWith('http')) {
-      if (window.Telegram?.WebApp?.openLink) {
-        Telegram.WebApp.openLink(action);
-      } else {
-        window.open(action, '_blank');
-      }
-    } else {
-      console.log("Action:", action);
-    }
-  }  // Устанавливаем дату присоединения (примерная)
-        const joinDate = new Date(user.id * 1000);
-        document.getElementById('join-date').textContent = joinDate.toLocaleDateString('ru-RU');
-        
-        // Устанавливаем номер профиля (первые 4 цифры ID)
-        document.getElementById('profile-number').textContent = String(user.id).slice(0, 4);
-        
-        // Настраиваем кнопку "Назад" в Telegram
-        Telegram.WebApp.BackButton.show();
-        Telegram.WebApp.BackButton.onClick(handleBackButton);
-        
-      } else {
-        console.log("No user data available");
-        setupDemoData();
-      }
-    } else {
-      console.log("Not in Telegram WebApp, using demo data");
-      setupDemoData();
-    }
-
-    // Загрузка сохраненного баланса
-    const savedBalance = localStorage.getItem('userBalance');
-    if (savedBalance) {
-      document.getElementById('balance').textContent = savedBalance;
-    } else {
-      localStorage.setItem('userBalance', '0');
-      document.getElementById('balance').textContent = '0';
-    }
-  }
-
-  function setupDemoData() {
-    const username = "Капитан Джек";
-    document.getElementById('username').textContent = username;
-    document.getElementById('profile-username').textContent = username;
-    
-    const avatarElement = document.getElementById('avatar');
-    const profileAvatarElement = document.getElementById('profile-avatar-img');
-    
-    avatarElement.innerHTML = 
-      `<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="70" cy="70" r="70" fill="#2E2E2E"/>
-        <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-      </svg>`;
-    
-    profileAvatarElement.innerHTML = 
-      `<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="30" fill="#2E2E2E"/>
-        <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-      </svg>`;
-    
-    document.getElementById('join-date').textContent = new Date().toLocaleDateString('ru-RU');
-    document.getElementById('profile-number').textContent = '1234';
-
-    // Загрузка сохраненного баланса
-    const savedBalance = localStorage.getItem('userBalance');
-    if (savedBalance) {
-      document.getElementById('balance').textContent = savedBalance;
-    } else {
-      localStorage.setItem('userBalance', '0');
-      document.getElementById('balance').textContent = '0';
-    }
-  }
-
-  function handleBackButton() {
-    if (document.getElementById('expenses-page').style.display === 'block') {
-      hideExpensesPage();
-    } else if (document.getElementById('profile-page').style.display === 'block') {
-      hideProfilePage();
-    } else if (document.getElementById('payment-page').style.display === 'block') {
-      hidePaymentPage();
-    } else if (document.getElementById('modal').classList.contains('show')) {
-      hideAddCardModal();
-    } else if (document.getElementById('career-popup-overlay').style.display === 'flex') {
-      closeCareerPopup();
-    }
-  }
-
-  // Управление страницами
-  function showExpensesPage() {
-    document.getElementById('expenses-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-    initExpensesCalendar();
-  }
-
-  function hideExpensesPage() {
-    document.getElementById('expenses-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showProfilePage() {
-    document.getElementById('profile-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-  }
-
-  function hideProfilePage() {
-    document.getElementById('profile-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showPaymentPage() {
-    document.getElementById('payment-page').style.display = 'block';
-    document.getElementById('cabinet-page').style.display = 'none';
-    triggerVibration();
-    initPaymentPage();
-  }
-
-  function hidePaymentPage() {
-    document.getElementById('payment-page').style.display = 'none';
-    document.getElementById('cabinet-page').style.display = 'block';
-    triggerVibration();
-  }
-
-  function showAddCardModal() {
-    document.getElementById('modal').classList.add('show');
-    document.getElementById('cardNumberInput').focus();
-    // Очищаем поля при открытии
-    document.getElementById('cardNumberInput').value = '';
-    document.getElementById('cardHolderInput').value = '';
-    document.getElementById('cardExpiryInput').value = '';
-    document.getElementById('cardCvcInput').value = '';
-    document.getElementById('cardBrand').textContent = '';
-    document.getElementById('cardBrand').classList.remove('show');
-    triggerVibration();
-  }
-
-  function hideAddCardModal() {
-    document.getElementById('modal').classList.remove('show');
-  }
-
-  function handleProfileClick(action) {
-    triggerVibration();
-    if (typeof action === 'string' && action.startsWith('http')) {
-      if (window.Telegram?.WebApp?.openLink) {
-        Telegram.WebApp.openLink(action);
-      } else {
-        window.open(action, '_blank');
-      }
-    } else {
-      console.log("Action:", action);
-    }
-  }
 
     // Вызываем инициализацию при загрузке
     document.addEventListener('DOMContentLoaded', function() {
@@ -3294,42 +2158,50 @@
 
     updateDots();
 
-    / Логика пиратской карьеры
-  const careerDescriptions = {
-    "Юнга": "Ты только что прибыл на корабль! Начало пиратского пути.",
-    "Крыса трюма": "Ты уже освоился на судне, но пока прячешься в трюме.",
-    "Корсар": "Ты стал настоящим пиратом и уже участвуешь в абордаже.",
-    "Штурман": "Ты прокладываешь курс команды и ведёшь корабль вперёд.",
-    "Бывалый пёс": "Ты повидал штормы, битвы и сокровища. Опытный ветеран!"
-  };
+    // Функционал каюты
+    const careerDescriptions = {
+      "Юнга": "Ты только что прибыл на корабль! Начало пиратского пути.",
+      "Крыса трюма": "Ты уже освоился на судне, но пока прячешься в трюме.",
+      "Корсар": "Ты стал настоящим пиратом и уже участвуешь в абордаже.",
+      "Штурман": "Ты прокладываешь курс команды и ведёшь корабль вперёд.",
+      "Бывалый пёс": "Ты повидал штормы, битвы и сокровища. Опытный ветеран!"
+    };
 
-  function changeLevel(level, buttonElement) {
-    const levelLabel = document.getElementById('level-label');
-    levelLabel.textContent = level;
+    function triggerVibration() {
+      try {
+        if (window.Telegram?.WebApp?.HapticFeedback?.impactOccurred) {
+          Telegram.WebApp.HapticFeedback.impactOccurred('light');
+        }
+      } catch (e) {
+        console.warn('Vibration not supported', e);
+      }
+    }
 
-    const buttons = document.querySelectorAll('.career-button');
-    buttons.forEach(btn => btn.classList.remove('active'));
-    buttonElement.classList.add('active');
+    function changeLevel(level, buttonElement) {
+      const levelLabel = document.getElementById('level-label');
+      levelLabel.textContent = level;
 
-    // Показываем попап с описанием уровня
-    openCareerPopup(level);
-    triggerVibration();
-  }
+      const buttons = document.querySelectorAll('.career-button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
 
-  function openCareerPopup(level) {
-    const overlay = document.getElementById('career-popup-overlay');
-    const title = document.getElementById('career-title');
-    const text = document.getElementById('career-text');
-    title.textContent = level;
-    text.textContent = careerDescriptions[level] || 'Информация отсутствует';
-    overlay.style.display = 'flex';
-    triggerVibration();
-  }
+      triggerVibration();
+    }
 
-  function closeCareerPopup() {
-    const overlay = document.getElementById('career-popup-overlay');
-    overlay.style.display = 'none';
-  }
+    function openCareerPopup(level) {
+      const overlay = document.getElementById('career-popup-overlay');
+      const title = document.getElementById('career-title');
+      const text = document.getElementById('career-text');
+      title.textContent = level;
+      text.textContent = careerDescriptions[level] || 'Информация отсутствует';
+      overlay.style.display = 'flex';
+      triggerVibration();
+    }
+
+    function closeCareerPopup() {
+      const overlay = document.getElementById('career-popup-overlay');
+      overlay.style.display = 'none';
+    }
 
     // Навигация между страницами
     const mainPage = document.getElementById('main-page');
@@ -3435,78 +2307,11 @@
     showPage(mainPage);
    
 
-    // Логика календаря расходов
-  let currentDate = new Date();
-  
-  function initExpensesCalendar() {
-    updateCalendar();
-    // Здесь можно добавить загрузку данных о расходах
-  }
-  
-  function updateCalendar() {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    
-    document.getElementById('current-month').textContent = 
-      new Date(year, month).toLocaleDateString('ru-RU', { 
-        month: 'long', 
-        year: 'numeric' 
-      });
-    
-    const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
-    
-    const calendarBody = document.getElementById('calendar-body');
-    calendarBody.innerHTML = '';
-    
-    let date = 1;
-    for (let i = 0; i < 6; i++) {
-      if (date > lastDay.getDate()) break;
-      
-      const row = document.createElement('tr');
-      
-      for (let j = 0; j < 7; j++) {
-        const cell = document.createElement('td');
-        
-        if (i === 0 && j < firstDay.getDay()) {
-          // Пустые ячейки перед первым днем месяца
-          cell.textContent = '';
-        } else if (date > lastDay.getDate()) {
-          // Пустые ячейки после последнего дня месяца
-          cell.textContent = '';
-        } else {
-          cell.textContent = date;
-          
-          // Подсветка текущего дня
-          const today = new Date();
-          if (date === today.getDate() && 
-              month === today.getMonth() && 
-              year === today.getFullYear()) {
-            cell.style.border = '1px solid #d4af37';
-            cell.style.boxShadow = '0 0 5px #d4af37';
-          }
-          
-          date++;
-        }
-        
-        row.appendChild(cell);
-      }
-      
-      calendarBody.appendChild(row);
+    // Функции для страницы расходов
+    function goBackToCabinet() {
+      document.getElementById('expenses-page').style.display = 'none';
+      triggerVibration();
     }
-  }
-  
-  function prevMonth() {
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    updateCalendar();
-    triggerVibration();
-  }
-  
-  function nextMonth() {
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    updateCalendar();
-    triggerVibration();
-  }
 
     // Обработчик для кнопки "Расходы" в каюте
     document.querySelector('.info-box.clickable').addEventListener('click', function(e) {
@@ -3753,510 +2558,6 @@
     };
     
     window.hideProductsPage = hideProductsPage;
-
-    // Логика страницы пополнения
-  let cards = [];
-  let exchangeRate = 75;
-  let selectedCard = 0;
-  let currentSuccessModal = null;
-
-  // Цвета для разных типов карт
-  const cardColors = {
-    'VISA': ['#1a1a2e', '#16213e'],
-    'MC': ['#191919', '#3a3a3a'],
-    'AMEX': ['#006fcf', '#003f7f'],
-    'MIR': ['#1a3e8c', '#0d2b6b']
-  };
-
-  // Форматирование валюты
-  function formatCurrency(amount, currency) {
-    return new Intl.NumberFormat('ru-RU', {
-      style: 'currency',
-      currency: currency === '$' ? 'USD' : 'RUB',
-      currencyDisplay: 'symbol'
-    }).format(amount).replace(/\s/g, ' ');
-  }
-
-  // Динамическая комиссия
-  function calculateCommission(amount) {
-    if (amount <= 1000) return 0.03; // 3%
-    if (amount <= 5000) return 0.025; // 2.5%
-    return 0.02; // 2%
-  }
-
-  // Рендер карусели карт
-  function renderCarousel() {
-    const carousel = document.getElementById('carousel');
-    carousel.innerHTML = '';
-    
-    cards.forEach((card, index) => {
-      const container = document.createElement('div');
-      container.className = 'card-container';
-      container.style.transitionDelay = `${index * 0.1}s`;
-      
-      const cardElement = document.createElement('div');
-      cardElement.className = 'card';
-      cardElement.dataset.index = index;
-      cardElement.dataset.id = card.id;
-      
-      cardElement.innerHTML = `
-        <div class="card-front" style="background: linear-gradient(145deg, ${cardColors[card.brand]?.[0] || '#141414'}, ${cardColors[card.brand]?.[1] || '#0a0a0a'});">
-          <div class="top">
-            <div class="chip">💳</div>
-            <div class="network">${card.brand}</div>
-          </div>
-          <div class="number">${card.number}</div>
-          <div class="holder">${card.holder} ${card.expiry}</div>
-        </div>
-        <div class="card-back">
-          <div class="top">
-            <div class="network">${card.brand}</div>
-          </div>
-          <div class="card-cvc">${card.cvc}</div>
-          <div class="card-number-back">${card.fullNumber.replace(/\d(?=\d{4})/g, '*')}</div>
-        </div>
-      `;
-      
-      cardElement.addEventListener('click', (e) => {
-        if (e.target.closest('.btn')) return;
-        
-        if (cardElement.classList.contains('flipped')) {
-          cardElement.classList.remove('flipped');
-          triggerVibration([30]);
-        } else {
-          cardElement.classList.add('flipped');
-          triggerVibration([50, 30]);
-          
-          setTimeout(() => {
-            if (cardElement.classList.contains('flipped')) {
-              cardElement.classList.remove('flipped');
-            }
-          }, 5000);
-        }
-      });
-      
-      container.appendChild(cardElement);
-      carousel.appendChild(container);
-      
-      setTimeout(() => {
-        container.classList.add('visible');
-      }, 50);
-    });
-    
-    scrollToCard(selectedCard);
-  }
-
-  // Скролл к выбранной карте
-  function scrollToCard(index) {
-    const carousel = document.getElementById('carousel');
-    const card = carousel.children[index];
-    if (card) {
-      card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-    }
-  }
-
-  // Форматирование номера карты
-  function formatCardNumber(value) {
-    const v = value.replace(/\D/g,'').substring(0,16);
-    const parts = [];
-    for (let i = 0; i < v.length; i += 4) {
-      parts.push(v.substring(i, i + 4));
-    }
-    return parts.join(' ').trim();
-  }
-
-  // Автоматическое определение бренда карты
-  function detectCardBrand(number) {
-    const num = number.replace(/\D/g,'');
-    const brands = {
-      'VISA': /^4/,
-      'MASTERCARD': /^5[1-5]/,
-      'AMEX': /^3[47]/,
-      'MIR': /^2/,
-      'JCB': /^(2131|1800|35)/,
-      'DINERS': /^(36|38|30[0-5])/,
-      'DISCOVER': /^(6011|65|64[4-9])/
-    };
-    
-    for (const [brand, regex] of Object.entries(brands)) {
-      if (regex.test(num)) {
-        document.getElementById('cardBrand').textContent = brand;
-        document.getElementById('cardBrand').classList.add('show');
-        return brand;
-      }
-    }
-    
-    document.getElementById('cardBrand').textContent = '';
-    document.getElementById('cardBrand').classList.remove('show');
-    return '';
-  }
-
-  // Обновление сумм
-  function updateAmounts() {
-    const amount = parseFloat(document.getElementById('amountInput').value) || 0;
-    const commissionRate = calculateCommission(amount);
-    const commission = amount * commissionRate;
-    const net = amount - commission;
-    const usd = net / exchangeRate;
-    
-    document.getElementById('entered').textContent = formatCurrency(amount, '₽');
-    document.getElementById('commission').textContent = `${(commissionRate * 100).toFixed(1)}% (${formatCurrency(commission, '₽')})`;
-    document.getElementById('net').textContent = formatCurrency(net, '₽');
-    document.getElementById('usd').textContent = formatCurrency(usd, '$');
-  }
-
-  // Дебаунс
-  function debounce(func, timeout = 300) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => func.apply(this, args), timeout);
-    };
-  }
-
-  // Получение курса валют
-  async function fetchExchangeRate() {
-    const cache = localStorage.getItem('exchangeRateCache');
-    const now = Date.now();
-    
-    if (cache) {
-      const { rate, timestamp } = JSON.parse(cache);
-      if (now - timestamp < 3600000) { // 1 час кэша
-        return rate;
-      }
-    }
-
-    try {
-      const rate = 75; // Заглушка для демонстрации
-      localStorage.setItem('exchangeRateCache', JSON.stringify({
-        rate,
-        timestamp: now
-      }));
-      return rate;
-    } catch {
-      return 75;
-    }
-  }
-
-  // Инициализация страницы пополнения
-  async function initPaymentPage() {
-    exchangeRate = await fetchExchangeRate();
-    
-    // Загрузка сохраненных карт из localStorage
-    const storedCards = localStorage.getItem('userCards');
-    cards = storedCards ? JSON.parse(storedCards) : [
-      { 
-        id: '1', 
-        number: '•••• •••• •••• 3456', 
-        holder: 'IVAN IVANOV', 
-        expiry: '09/27', 
-        brand: 'VISA',
-        cvc: '123',
-        fullNumber: '4111111111111111'
-      },
-      { 
-        id: '2', 
-        number: '•••• •••• •••• 7890', 
-        holder: 'PETER PETROV', 
-        expiry: '11/26', 
-        brand: 'MC',
-        cvc: '456',
-        fullNumber: '5555555555554444'
-      }
-    ];
-
-    renderCarousel();
-    initPaymentEventListeners();
-    updateAmounts();
-  }
-
-  // Инициализация обработчиков событий для страницы пополнения
-  function initPaymentEventListeners() {
-    // Удаляем старые обработчики, если они есть
-    const oldPayBtn = document.getElementById('payBtn');
-    const newPayBtn = oldPayBtn.cloneNode(true);
-    oldPayBtn.parentNode.replaceChild(newPayBtn, oldPayBtn);
-
-    // Быстрый выбор суммы
-    document.querySelectorAll('.quick-amount').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.getElementById('amountInput').value = btn.dataset.amount;
-        updateAmounts();
-        triggerVibration();
-      });
-    });
-
-    // Ввод суммы
-    document.getElementById('amountInput').addEventListener('input', debounce(updateAmounts));
-
-    // Кнопка пополнения
-    document.getElementById('payBtn').addEventListener('click', async function() {
-      const amount = parseFloat(document.getElementById('amountInput').value);
-      
-      if (!amount || amount <= 0) {
-        alert('Введите сумму пополнения');
-        return;
-      }
-      
-      if (cards.length === 0) {
-        alert('Добавьте карту для пополнения');
-        return;
-      }
-      
-      // Показываем индикатор загрузки
-      const payBtn = document.getElementById('payBtn');
-      payBtn.disabled = true;
-      payBtn.classList.add('loading');
-      
-      try {
-        // Имитация запроса к серверу
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        
-        // Удаляем предыдущее модальное окно, если оно есть
-        if (currentSuccessModal) {
-          currentSuccessModal.remove();
-        }
-        
-        // Успешный платеж
-        currentSuccessModal = document.createElement('div');
-        currentSuccessModal.className = 'modal success-modal';
-        currentSuccessModal.innerHTML = document.getElementById('successModalTemplate').innerHTML;
-        
-        document.getElementById('successAmountText').textContent = 
-          `Сумма: ${formatCurrency(amount, '₽')}`;
-        
-        document.body.appendChild(currentSuccessModal);
-        setTimeout(() => currentSuccessModal.classList.add('show'), 10);
-        
-        // Обновляем баланс в каюте
-        const currentBalance = parseInt(localStorage.getItem('userBalance')) || 0;
-        const newBalance = currentBalance + amount;
-        document.getElementById('balance').textContent = newBalance;
-        
-        // Сохраняем баланс в localStorage
-        localStorage.setItem('userBalance', newBalance.toString());
-        
-        // Анимация успешного платежа
-        payBtn.classList.remove('loading');
-        payBtn.classList.add('payment-success');
-        setTimeout(() => {
-          payBtn.classList.remove('payment-success');
-        }, 600);
-        
-        // Вибрация успеха
-        triggerVibration([100, 30, 100]);
-        
-        // Обработка закрытия success modal
-        const okButton = currentSuccessModal.querySelector('.pay');
-        okButton.onclick = () => {
-          currentSuccessModal.classList.remove('show');
-          setTimeout(() => {
-            currentSuccessModal.remove();
-            currentSuccessModal = null;
-          }, 300);
-          payBtn.disabled = false;
-          document.getElementById('amountInput').value = '';
-          updateAmounts();
-        };
-        
-      } catch (error) {
-        alert('Ошибка при обработке платежа');
-        payBtn.classList.remove('loading');
-        payBtn.disabled = false;
-      }
-    });
-
-    // Форматирование номера карты
-    document.getElementById('cardNumberInput').addEventListener('input', (e) => {
-      const formatted = formatCardNumber(e.target.value);
-      if (e.target.value !== formatted) {
-        e.target.value = formatted;
-      }
-      detectCardBrand(e.target.value);
-    });
-
-    // Фиксированный ввод имени держателя
-    document.getElementById('cardHolderInput').addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '').toUpperCase();
-    });
-
-    // Форматирование срока действия
-    document.getElementById('cardExpiryInput').addEventListener('input', (e) => {
-      const value = e.target.value.replace(/\D/g,'');
-      if (value.length > 2) {
-        e.target.value = `${value.substring(0,2)}/${value.substring(2,4)}`;
-      } else {
-        e.target.value = value;
-      }
-    });
-
-    // Ввод CVC/CVV
-    document.getElementById('cardCvcInput').addEventListener('input', (e) => {
-      e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
-    });
-
-    // Сохранение карты
-    document.getElementById('saveCardBtn').addEventListener('click', () => {
-      const number = document.getElementById('cardNumberInput').value.trim();
-      const holder = document.getElementById('cardHolderInput').value.trim().toUpperCase();
-      const expiry = document.getElementById('cardExpiryInput').value.trim();
-      const cvc = document.getElementById('cardCvcInput').value.trim();
-      const brand = detectCardBrand(number) || 'UNKNOWN';
-
-      if (!number || number.replace(/\D/g,'').length < 16) {
-        alert('Введите корректный номер карты (16 цифр)');
-        return;
-      }
-      if (!holder) {
-        alert('Введите имя держателя карты');
-        return;
-      }
-      if (!expiry || !/^\d{2}\/\d{2}$/.test(expiry)) {
-        alert('Введите срок действия в формате MM/YY');
-        return;
-      }
-      if (!cvc || cvc.length < 3) {
-        alert('Введите корректный CVC/CVV код');
-        return;
-      }
-
-      // Форматируем номер для отображения
-      const maskedNumber = '•••• •••• •••• ' + number.slice(-4);
-      
-      // Проверяем, есть ли уже такая карта
-      const existingIndex = cards.findIndex(c => 
-        c.fullNumber === number.replace(/\D/g, '')
-      );
-      
-      if (existingIndex >= 0) {
-        // Обновляем существующую карту
-        cards[existingIndex] = {
-          ...cards[existingIndex],
-          holder,
-          expiry,
-          cvc,
-          brand
-        };
-        alert('Карта обновлена');
-      } else {
-        // Добавляем новую карту
-        const newCard = {
-          id: Date.now().toString(),
-          number: maskedNumber,
-          holder,
-          expiry,
-          brand,
-          cvc,
-          fullNumber: number.replace(/\D/g, '')
-        };
-        cards.push(newCard);
-        alert('Карта добавлена');
-      }
-      
-      // Сохраняем в localStorage
-      localStorage.setItem('userCards', JSON.stringify(cards));
-      
-      // Обновляем карусель
-      renderCarousel();
-      
-      // Закрываем модальное окно
-      hideAddCardModal();
-      triggerVibration();
-    });
-
-    // Удаление карты
-    document.getElementById('deleteCardBtn').addEventListener('click', () => {
-      const number = document.getElementById('cardNumberInput').value.trim();
-      const cardIndex = cards.findIndex(c => 
-        c.fullNumber === number.replace(/\D/g, '')
-      );
-      
-      if (cardIndex >= 0) {
-        cards.splice(cardIndex, 1);
-        localStorage.setItem('userCards', JSON.stringify(cards));
-        alert('Карта удалена');
-        renderCarousel();
-        hideAddCardModal();
-        triggerVibration([50, 30, 50]);
-      } else {
-        alert('Карта не найдена');
-      }
-    });
-
-    // Голосовой ввод суммы
-    document.getElementById('voiceInputBtn').addEventListener('click', () => {
-      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'ru-RU';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-        
-        recognition.onresult = (e) => {
-          const transcript = e.results[0][0].transcript;
-          const amount = parseFloat(transcript.replace(',', '.').replace(/[^\d.]/g, ''));
-          if (!isNaN(amount)) {
-            document.getElementById('amountInput').value = amount.toFixed(2);
-            updateAmounts();
-            triggerVibration([50, 30]);
-          } else {
-            alert('Не удалось распознать сумму');
-          }
-        };
-        
-        recognition.onerror = (e) => {
-          alert('Ошибка распознавания: ' + e.error);
-        };
-        
-        recognition.start();
-        triggerVibration([30]);
-      } else {
-        alert('Голосовой ввод не поддерживается вашим браузером');
-      }
-    });
-
-    // Кнопки навигации по картам
-    document.getElementById('prevBtn').onclick = () => {
-      selectedCard = Math.max(0, selectedCard - 1);
-      scrollToCard(selectedCard);
-      triggerVibration([20]);
-    };
-
-    document.getElementById('nextBtn').onclick = () => {
-      selectedCard = Math.min(cards.length - 1, selectedCard + 1);
-      scrollToCard(selectedCard);
-      triggerVibration([20]);
-    };
-
-    // Кнопка добавления карты
-    document.getElementById('enterDataBtn').onclick = () => {
-      showAddCardModal();
-    };
-
-    // Закрытие модальных окон по клику на фон
-    document.getElementById('modal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('modal')) {
-        hideAddCardModal();
-      }
-    });
-
-    // Закрытие модальных окон по ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (document.getElementById('modal').classList.contains('show')) {
-          hideAddCardModal();
-        }
-        if (document.getElementById('career-popup-overlay').style.display === 'flex') {
-          closeCareerPopup();
-        }
-      }
-    });
-  }
-
-  // Инициализация при загрузке
-  document.addEventListener('DOMContentLoaded', function() {
-    initUserData();
-    updateCalendar();
-  });
   </script>
 </body>
 </html>
