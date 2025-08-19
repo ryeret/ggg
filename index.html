@@ -275,145 +275,145 @@
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
 
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.card-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
+    .card-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
 
-.card-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Центрируем содержимое */
-  height: 100%;
-  padding-right: 10px;
-}
+    .card-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Центрируем содержимое */
+      height: 100%;
+      padding-right: 10px;
+    }
 
-.card-left h2 {
-  font-size: 17px; /* Уменьшен размер шрифта */
-  font-weight: 700;
-  margin: 0 0 6px 0; /* Уменьшен отступ снизу */
-  color: #fff;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 180px;
-}
+    .card-left h2 {
+      font-size: 17px; /* Уменьшен размер шрифта */
+      font-weight: 700;
+      margin: 0 0 6px 0; /* Уменьшен отступ снизу */
+      color: #fff;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 180px;
+    }
 
-.card-left button {
-  background-color: #ffffff;
-  color: #000000;
-  padding: 6px 13px; /* Уменьшен размер кнопки */
-  font-size: 15px; /* Уменьшен размер шрифта */
-  font-weight: 700;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: flex-start;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-  margin-top: 0;
-}
+    .card-left button {
+      background-color: #ffffff;
+      color: #000000;
+      padding: 6px 13px; /* Уменьшен размер кнопки */
+      font-size: 15px; /* Уменьшен размер шрифта */
+      font-weight: 700;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      margin-top: 0;
+    }
 
-.card-left button:hover {
-  background-color: #f0f0f0;
-  transform: translateY(-1px); /* Уменьшен эффект при наведении */
-  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
-}
+    .card-left button:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-1px); /* Уменьшен эффект при наведении */
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
+    }
 
-.card-left button:active {
-  transform: scale(0.96);
-}
+    .card-left button:active {
+      transform: scale(0.96);
+    }
 
-.card svg {
-  width: 28px; /* Уменьшен размер иконки */
-  height: 28px;
-  fill: #fff;
-  opacity: 0.85;
-  margin-left: 10px;
-  flex-shrink: 0;
-}
+    .card svg {
+      width: 28px; /* Уменьшен размер иконки */
+      height: 28px;
+      fill: #fff;
+      opacity: 0.85;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
 
-.carousel-dots {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  display: flex;
-  flex-direction: row; /* Явно указываем горизонтальное направление */
-  flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
-  align-items: center;
-  justify-content: center; /* Центрируем точки */
-  gap: 8px;
-  padding: 4px 8px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  z-index: 10;
-  /* Важно: сбрасываем все возможные наследуемые стили */
-  margin: 0;
-  list-style: none;
-}.carousel-dots {
-  position: absolute;
-  bottom: 10px;
-  right: 20px;
-  display: flex;
-  flex-direction: row; /* Явно указываем горизонтальное направление */
-  flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
-  align-items: center;
-  justify-content: center; /* Центрируем точки */
-  gap: 8px;
-  padding: 4px 8px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  z-index: 10;
-  /* Важно: сбрасываем все возможные наследуемые стили */
-  margin: 0;
-  list-style: none;
-}
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      display: flex;
+      flex-direction: row; /* Явно указываем горизонтальное направление */
+      flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
+      align-items: center;
+      justify-content: center; /* Центрируем точки */
+      gap: 8px;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      z-index: 10;
+      /* Важно: сбрасываем все возможные наследуемые стили */
+      margin: 0;
+      list-style: none;
+    }.carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      display: flex;
+      flex-direction: row; /* Явно указываем горизонтальное направление */
+      flex-wrap: nowrap; /* Запрещаем перенос на новую строку */
+      align-items: center;
+      justify-content: center; /* Центрируем точки */
+      gap: 8px;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      z-index: 10;
+      /* Важно: сбрасываем все возможные наследуемые стили */
+      margin: 0;
+      list-style: none;
+    }
 
-/* Точки */
-.dot {
-  display: inline-block; /* На случай, если flex не сработает */
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transition: all 0.3s;
-}
+    /* Точки */
+    .dot {
+      display: inline-block; /* На случай, если flex не сработает */
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s;
+    }
 
-.dot.active {
-  background-color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
-}
+    .dot.active {
+      background-color: #ffffff;
+      transform: scale(1.1);
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+    }
 
-.dot.active {
-  background-color: #ffffff;
-  transform: scale(1.2);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-}
-.card {
-  position: relative;
-  padding-bottom: 25px; /* Место для точек */
-}
+    .dot.active {
+      background-color: #ffffff;
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    }
+    .card {
+      position: relative;
+      padding-bottom: 25px; /* Место для точек */
+    }
 
-.card .dots {
-  position: absolute;
-  right: 15px;
-  bottom: 5px;
-  justify-content: flex-end;
-}
+    .card .dots {
+      position: absolute;
+      right: 15px;
+      bottom: 5px;
+      justify-content: flex-end;
+    }
     
     /* Стили для каюты */
     .cabinet-page {
@@ -1912,7 +1912,7 @@
         </div>
       </div>
 
-      <div class="card">
+<div class="card">
         <div class="card-content">
           <div class="card-left">
             <h2>Магазин 2</h2>
@@ -2000,7 +2000,7 @@
         </div>
       </div>
 
-      <div class="button-block">
+<div class="button-block">
         <a href="https://t.me/FOLLENSHAIDbot?startapp=0bff92cd6d10d69a" target="_blank" style="text-decoration: none;">
           <button type="button" onclick="triggerVibration()">Отзывы о Follen & Shaid</button>
         </a>
@@ -2068,7 +2068,7 @@
       </div>
     </div>
 
-    <!-- СКЛАД -->
+<!-- СКЛАД -->
     <div class="nav-item" id="storage-nav-item">
       <div style="display: flex; flex-direction: column; align-items: center;">
         <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -2162,7 +2162,7 @@
     <div style="width: 80px;"></div> <!-- Для выравнивания -->
   </div>
 
-  <div class="top-boxes">
+<div class="top-boxes">
     <div class="top-box">
       <div>Всего</div>
       <div id="total-month">0 ₽</div>
@@ -2266,7 +2266,7 @@
       <input type="text" class="search-input" placeholder="Поиск товаров..." id="searchInputProducts">
     </div>
 
-    <!-- Панель инструментов -->
+<!-- Панель инструментов -->
     <div class="toolbar">
       <div class="categories-toggle" id="categoriesToggle">Категории</div>
       <select class="select-ios" id="sortSelect" aria-label="Сортировка">
@@ -2425,7 +2425,8 @@
       const width = 1 + Math.random() * 2;
       drop.style.width = width + 'px';
       drop.style.height = 10 + Math.random() * 15 + 'px';
-      rainContainer.appendChild(drop);
+
+rainContainer.appendChild(drop);
     }
 
     // Карусель (главная страница)
@@ -2546,7 +2547,7 @@
     const storagePage = document.getElementById('storage-page');
     const navItems = document.querySelectorAll('.bottom-nav .nav-item');
 
-    // Функция для показа страницы
+// Функция для показа страницы
     function showPage(pageElement) {
       // Список всех страниц
       const allPages = [mainPage, cabinetPage, treasurePage, storagePage];
@@ -2671,7 +2672,7 @@
       triggerVibration();
     }
 
-    // Обработчик для кнопки "Управление профилем" в каюте
+// Обработчик для кнопки "Управление профилем" в каюте
     document.querySelector('a[href*="d339d82edd45176b"] button').addEventListener('click', function(e) {
       e.preventDefault();
       document.getElementById('profile-page').style.display = 'block';
@@ -2784,7 +2785,6 @@
         // Возвращаем нормальную прозрачность если не досвайпнули
         productsPage.style.opacity = '1';
       }
-      dragging=false;
     });
 
     // Очищаем флаги при окончании касания
@@ -2792,7 +2792,7 @@
       isSwipingUp = false;
     });
 
-    // ===== ФУНКЦИИ ДЛЯ СТРАНИЦЫ ТОВАРОВ =====
+// ===== ФУНКЦИИ ДЛЯ СТРАНИЦЫ ТОВАРОВ =====
     const productsData = [
       { id:1, title:"Часы Premium Black", images:[
         "https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
@@ -2825,8 +2825,7 @@
       { id:8, title:"Кепка Snapback Black", images:[
         "https://images.unsplash.com/photo-1521369909029-2afed882baee?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-
-], description:"Черная кепка snapback с регулируемой застежкой. Материал: 100% хлопок.", price:3490, category:"hats", rating:4.3, reviews:19, keywords: ["кепка", "черная", "snapback", "бейсболка"] },
+      ], description:"Черная кепка snapback с регулируемой застежкой. Материал: 100% хлопок.", price:3490, category:"hats", rating:4.3, reviews:19, keywords: ["кепка", "черная", "snapback", "бейсболка"] },
       { id:9, title:"Кроссовки Runner", images:[
         "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
@@ -2838,289 +2837,294 @@
       { id:11, title:"Футболка Graphic White", images:[
         "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
         "https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-      ], description:"Белая футболка с графическим принтом. 100% хлопок, доступна в размерах S-XL.", price:3490, category:"tshirts", rating:4.1, reviews:22, keywords: ["футболка", "белая", "графика", "
+      ], description:"Белая футболка с графическим принтом. 100% хлопок, доступна в размерах S-XL.", price:3490, category:"tshirts", rating:4.1, reviews:22, keywords: ["футболка", "белая", "графика", "принт"] }
+    ];
 
-let currentCategory = 'all';
-let currentSort = 'none';
-let favorites = [];
-let cartItems = [];
+    let currentCategory = 'all';
+    let currentSort = 'none';
+    let favorites = [];
+    let cartItems = [];
 
-// Загрузка данных товаров
-function loadProductsData() {
-  const loadingSpinner = document.getElementById('loadingSpinner');
-  const productsFeed = document.getElementById('productsFeed');
-  const emptyState = document.getElementById('emptyState');
-  
-  loadingSpinner.style.display = 'block';
-  productsFeed.innerHTML = '';
-  emptyState.style.display = 'none';
-  
-  // Имитация загрузки данных
-  setTimeout(() => {
-    renderProducts(productsData);
-    loadingSpinner.style.display = 'none';
-  }, 800);
-}
-
-// Фильтрация товаров
-function filterProducts(category) {
-  currentCategory = category;
-  renderProducts(productsData);
-  
-  // Закрываем выпадающее меню категорий
-  const categoriesDropdown = document.getElementById('categoriesDropdown');
-  const categoriesToggle = document.getElementById('categoriesToggle');
-  categoriesDropdown.classList.remove('active');
-  categoriesToggle.classList.remove('active');
-}
-
-// Сортировка товаров
-function sortProducts(sortType) {
-  currentSort = sortType;
-  renderProducts(productsData);
-}
-
-// Поиск товаров
-function searchProducts(query) {
-  renderProducts(productsData);
-}
-
-// Рендер товаров с учетом фильтров, сортировки и поиска
-function renderProducts(products) {
-  const productsFeed = document.getElementById('productsFeed');
-  const emptyState = document.getElementById('emptyState');
-  const searchInput = document.getElementById('searchInputProducts');
-  const searchQuery = searchInput.value.toLowerCase();
-  
-  // Фильтрация по категории
-  let filteredProducts = currentCategory === 'all' 
-    ? products 
-    : products.filter(p => p.category === currentCategory);
-  
-  // Фильтрация по поисковому запросу
-  if (searchQuery) {
-    filteredProducts = filteredProducts.filter(p => 
-      p.title.toLowerCase().includes(searchQuery) || 
-      p.description.toLowerCase().includes(searchQuery) ||
-      (p.keywords && p.keywords.some(k => k.toLowerCase().includes(searchQuery)))
-  }
-  
-  // Сортировка
-  switch(currentSort) {
-    case 'priceAsc':
-      filteredProducts.sort((a, b) => a.price - b.price);
-      break;
-    case 'priceDesc':
-      filteredProducts.sort((a, b) => b.price - a.price);
-      break;
-    case 'ratingDesc':
-      filteredProducts.sort((a, b) => b.rating - a.rating);
-      break;
-    default:
-      // Без сортировки
-      break;
-  }
-  
-  // Очищаем контейнер
-  productsFeed.innerHTML = '';
-  
-  // Если нет товаров - показываем пустое состояние
-  if (filteredProducts.length === 0) {
-    emptyState.style.display = 'block';
-    return;
-  }
-  
-  // Рендерим товары
-  filteredProducts.forEach(product => {
-    const productCard = document.createElement('div');
-    productCard.className = 'product-card';
-    productCard.dataset.productId = product.id;
-    
-    productCard.innerHTML = `
-      <div class="swipe-bg">
-        <div class="swipe-left">+ в корзину</div>
-        <div class="swipe-right">★ в избранное</div>
-      </div>
-      <div class="product-brand">FOLLEN & SHAID</div>
-      <img src="${product.images[0]}" class="product-image" alt="${product.title}">
-      <div class="product-content">
-        <h3 class="product-title">${product.title}</h3>
-        <div class="product-price">${product.price.toLocaleString()} ₽</div>
-      </div>
-      <button class="quick-view-btn" onclick="event.stopPropagation(); openQuickView(${product.id})">Быстрый просмотр</button>
-    `;
-    
-    productsFeed.appendChild(productCard);
-  });
-  
-  // Инициализация свайпов для карточек
-  initProductCardSwipes();
-}
-
-// Инициализация свайпов для карточек товаров
-function initProductCardSwipes() {
-  const productCards = document.querySelectorAll('.product-card');
-  
-  productCards.forEach(card => {
-    let startX, currentX, isDragging = false;
-    const threshold = 80;
-    const productId = parseInt(card.dataset.productId);
-    const product = productsData.find(p => p.id === productId);
-    
-    card.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      card.classList.add('swiping');
-      card.style.transition = 'none';
-    }, { passive: true });
-    
-    card.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
+    // Загрузка данных товаров
+    function loadProductsData() {
+      const loadingSpinner = document.getElementById('loadingSpinner');
+      const productsFeed = document.getElementById('productsFeed');
+      const emptyState = document.getElementById('emptyState');
       
-      currentX = e.touches[0].clientX - startX;
-      const limitedX = Math.max(Math.min(currentX, 120), -120);
+      loadingSpinner.style.display = 'block';
+      productsFeed.innerHTML = '';
+      emptyState.style.display = 'none';
       
-      card.style.transform = `translateX(${limitedX}px) rotate(${limitedX/60}deg)`;
+      // Имитация загрузки данных
+      setTimeout(() => {
+        renderProducts(productsData);
+        loadingSpinner.style.display = 'none';
+      }, 800);
+    }
+
+    // Фильтрация товаров
+    function filterProducts(category) {
+      currentCategory = category;
+      renderProducts(productsData);
       
-      const swipeLeft = card.querySelector('.swipe-left');
-      const swipeRight = card.querySelector('.swipe-right');
+      // Закрываем выпадающее меню категорий
+      const categoriesDropdown = document.getElementById('categoriesDropdown');
+      const categoriesToggle = document.getElementById('categoriesToggle');
+      categoriesDropdown.classList.remove('active');
+      categoriesToggle.classList.remove('active');
+    }
+
+    // Сортировка товаров
+    function sortProducts(sortType) {
+      currentSort = sortType;
+      renderProducts(productsData);
+    }
+
+    // Поиск товаров
+    function searchProducts(query) {
+      renderProducts(productsData);
+    }
+
+    // Рендер товаров с учетом фильтров, сортировки и поиска
+    function renderProducts(products) {
+      const productsFeed = document.getElementById('productsFeed');
+      const emptyState = document.getElementById('emptyState');
+      const searchInput = document.getElementById('searchInputProducts');
+      const searchQuery = searchInput.value.toLowerCase();
       
-      if (currentX < 0) {
-        swipeLeft.style.opacity = Math.min(1, Math.abs(currentX)/100);
-        swipeRight.style.opacity = 0.2;
-      } else {
-        swipeRight.style.opacity = Math.min(1, Math.abs(currentX)/100);
-        swipeLeft.style.opacity = 0.2;
-      }
-    }, { passive: true });
-    
-    card.addEventListener('touchend', () => {
-      if (!isDragging) return;
-      isDragging = false;
-      card.classList.remove('swiping');
-      card.style.transition = '';
+      // Фильтрация по категории
+      let filteredProducts = currentCategory === 'all' 
+        ? products 
+        : products.filter(p => p.category === currentCategory);
       
-      const swipeLeft = card.querySelector('.swipe-left');
-      const swipeRight = card.querySelector('.swipe-right');
-      
-      if (currentX <= -threshold) {
-        // Свайп влево - добавить в корзину
-        addToCart(product);
-        card.style.transform = 'translateX(-100%)';
-        setTimeout(() => {
-          card.style.transform = '';
-          swipeLeft.style.opacity = '0';
-        }, 300);
-      } else if (currentX >= threshold) {
-        // Свайп вправо - добавить в избранное
-        toggleFavorite(product.id);
-        card.animate([
-          { transform: 'translateX(0)' },
-          { transform: 'translateX(6px)' },
-          { transform: 'translateX(0)' }
-        ], { duration: 200 });
-        card.style.transform = '';
-        swipeRight.style.opacity = '0';
-      } else {
-        // Не досвайпнули - возвращаем на место
-        card.style.transform = '';
-        swipeLeft.style.opacity = '0';
-        swipeRight.style.opacity = '0';
+      // Фильтрация по поисковому запросу
+      if (searchQuery) {
+        filteredProducts = filteredProducts.filter(p => 
+          p.title.toLowerCase().includes(searchQuery) || 
+          p.description.toLowerCase().includes(searchQuery) || 
+          (p.keywords && p.keywords.some(k => k.toLowerCase().includes(searchQuery)))
       }
       
-      currentX = 0;
-    });
-  });
-}
+      // Сортировка
+      switch(currentSort) {
+        case 'priceAsc':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'priceDesc':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'ratingDesc':
+          filteredProducts.sort((a, b) => b.rating - a.rating);
+          break;
+        default:
+          // Без сортировки
+          break;
+      }
+      
+      // Очищаем контейнер
+      productsFeed.innerHTML = '';
+      
+      // Если нет товаров - показываем пустое состояние
+      if (filteredProducts.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      
+      // Рендерим товары
+      filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.dataset.productId = product.id;
+        
+        productCard.innerHTML = `
+          <div class="swipe-bg">
+            <div class="swipe-left">+ в корзину</div>
+            <div class="swipe-right">★ в избранное</div>
+          </div>
+          <div class="product-brand">FOLLEN & SHAID</div>
+          <img src="${product.images[0]}" class="product-image" alt="${product.title}">
+          <div class="product-content">
+            <h3 class="product-title">${product.title}</h3>
+            <div class="product-price">${product.price.toLocaleString()} ₽</div>
+          </div>
+          <button class="quick-view-btn" onclick="event.stopPropagation(); openQuickView(${product.id})">Быстрый просмотр</button>
+        `;
+        
+        productsFeed.appendChild(productCard);
+      });
+      
+      // Инициализация свайпов для карточек
+      initProductCardSwipes();
+    }
 
-// Добавление в корзину
-function addToCart(product) {
-  cartItems.push(product);
-  updateCartCounter();
-  triggerVibration();
-  
-  // Можно добавить анимацию добавления в корзину
-}
+    // Инициализация свайпов для карточек товаров
+    function initProductCardSwipes() {
+      const productCards = document.querySelectorAll('.product-card');
+      
+      productCards.forEach(card => {
+        let startX, currentX, isDragging = false;
+        const threshold = 80;
+        const productId = parseInt(card.dataset.productId);
+        const product = productsData.find(p => p.id === productId);
+        
+        card.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+          card.classList.add('swiping');
+          card.style.transition = 'none';
+        }, { passive: true });
+        
+        card.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          
+          currentX = e.touches[0].clientX - startX;
+          const limitedX = Math.max(Math.min(currentX, 120), -120);
+          
+          card.style.transform = `translateX(${limitedX}px) rotate(${limitedX/60}deg)`;
+          
+          const swipeLeft = card.querySelector('.swipe-left');
+          const swipeRight = card.querySelector('.swipe-right');
+          
+          if (currentX < 0) {
+            swipeLeft.style.opacity = Math.min(1, Math.abs(currentX)/100);
+            swipeRight.style.opacity = 0.2;
+          } else {
+            swipeRight.style.opacity = Math.min(1, Math.abs(currentX)/100);
+            swipeLeft.style.opacity = 0.2;
+          }
+        }, { passive: true });
+        
+        card.addEventListener('touchend', () => {
+          if (!isDragging) return;
+          isDragging = false;
+          card.classList.remove('swiping');
+          card.style.transition = '';
+          
+          const swipeLeft = card.querySelector('.swipe-left');
+          const swipeRight = card.querySelector('.swipe-right');
+          
+          if (currentX <= -threshold) {
+            // Свайп влево - добавить в корзину
+            addToCart(product);
+            card.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+              card.style.transform = '';
+              swipeLeft.style.opacity = '0';
+            }, 300);
+          } else if (currentX >= threshold) {
+            // Свайп вправо - добавить в избранное
+            toggleFavorite(product.id);
+            card.animate([
+              { transform: 'translateX(0)' },
+              { transform: 'translateX(6px)' },
+              { transform: 'translateX(0)' }
+            ], { duration: 200 });
+            card.style.transform = '';
+            swipeRight.style.opacity = '0';
+          } else {
+            // Не досвайпнули - возвращаем на место
+            card.style.transform = '';
+            swipeLeft.style.opacity = '0';
+            swipeRight.style.opacity = '0';
+          }
+          
+          currentX = 0;
+        });
+      });
+    }
 
-// Обновление счетчика корзины
-function updateCartCounter() {
-  const cartCounter = document.querySelector('.cart-counter');
-  if (cartCounter) {
-    cartCounter.textContent = cartItems.length;
-  }
-}
+    // Добавление в корзину
+    function addToCart(product) {
+      cartItems.push(product);
+      updateCartCounter();
+      triggerVibration();
+      
+      // Можно добавить анимацию добавления в корзину
+    }
 
-// Добавление/удаление из избранного
-function toggleFavorite(productId) {
-  const index = favorites.indexOf(productId);
-  if (index === -1) {
-    favorites.push(productId);
-  } else {
-    favorites.splice(index, 1);
-  }
-  triggerVibration();
-  
-  // Если активна вкладка избранного - обновляем список
-  if (document.getElementById('tabWishlist').classList.contains('active')) {
-    renderProducts(productsData);
-  }
-}
+    // Обновление счетчика корзины
+    function updateCartCounter() {
+      const cartCounter = document.querySelector('.cart-counter');
+      if (cartCounter) {
+        cartCounter.textContent = cartItems.length;
+      }
+    }
 
-// Быстрый просмотр товара
-function openQuickView(productId) {
-  const product = productsData.find(p => p.id === productId);
-  if (!product) return;
-  
-  // Можно реализовать модальное окно с деталями товара
-  alert(`Быстрый просмотр: ${product.title}\nЦена: ${product.price.toLocaleString()} ₽`);
-}
+    // Добавление/удаление из избранного
+    function toggleFavorite(productId) {
+      const index = favorites.indexOf(productId);
+      if (index === -1) {
+        favorites.push(productId);
+      } else {
+        favorites.splice(index, 1);
+      }
+      triggerVibration();
+      
+      // Если активна вкладка избранного - обновляем список
+      if (document.getElementById('tabWishlist').classList.contains('active')) {
+        renderProducts(productsData);
+      }
+    }
 
-// Переключение вкладок (Товары/Избранное)
-function setupTabs() {
-  const tabProducts = document.getElementById('tabProducts');
-  const tabWishlist = document.getElementById('tabWishlist');
-  
-  tabProducts.addEventListener('click', () => {
-    tabProducts.classList.add('active');
-    tabWishlist.classList.remove('active');
-    renderProducts(productsData);
-  });
-  
-  tabWishlist.addEventListener('click', () => {
-    tabWishlist.classList.add('active');
-    tabProducts.classList.remove('active');
-    
-    // Показываем только избранные товары
-    const filteredProducts = productsData.filter(p => favorites.includes(p.id));
-    renderProducts(filteredProducts);
-  });
-}
+    // Быстрый просмотр товара
+    function openQuickView(productId) {
+      const product = productsData.find(p => p.id === productId);
+      if (!product) return;
+      
+      // Можно реализовать модальное окно с деталями товара
+      alert(`Быстрый просмотр: ${product.title}\nЦена: ${product.price.toLocaleString()} ₽`);
+    }
 
-// Инициализация выпадающего меню категорий
-function setupCategoriesDropdown() {
-  const categoriesToggle = document.getElementById('categoriesToggle');
-  const categoriesDropdown = document.getElementById('categoriesDropdown');
-  
-  categoriesToggle.addEventListener('click', () => {
-    categoriesToggle.classList.toggle('active');
-    categoriesDropdown.classList.toggle('active');
-  });
-}
+    // Переключение вкладок (Товары/Избранное)
+    function setupTabs() {
+      const tabProducts = document.getElementById('tabProducts');
+      const tabWishlist = document.getElementById('tabWishlist');
+      
+      tabProducts.addEventListener('click', () => {
+        tabProducts.classList.add('active');
+        tabWishlist.classList.remove('active');
+        renderProducts(productsData);
+      });
+      
+      tabWishlist.addEventListener('click', () => {
+        tabWishlist.classList.add('active');
+        tabProducts.classList.remove('active');
+        
+        // Показываем только избранные товары
+        const filteredProducts = productsData.filter(p => favorites.includes(p.id));
+        renderProducts(filteredProducts);
+      });
+    }
 
-// Инициализация страницы товаров
-function initProductsPage() {
-  setupTabs();
-  setupCategoriesDropdown();
-  
-  // Обработчики для поиска
-  document.getElementById('searchInputProducts').addEventListener('input', (e) => {
-    searchProducts(e.target.value);
-  });
-  
-  // Обработчик для сортировки
-  document.getElementById('sortSelect').addEventListener('change', (e) => {
-    sortProducts(e.target.value);
-  });
+    // Инициализация выпадающего меню категорий
+    function setupCategoriesDropdown() {
+      const categoriesToggle = document.getElementById('categoriesToggle');
+      const categoriesDropdown = document.getElementById('categoriesDropdown');
+      
+      categoriesToggle.addEventListener('click', () => {
+        categoriesToggle.classList.toggle('active');
+        categoriesDropdown.classList.toggle('active');
+      });
+    }
+
+    // Инициализация страницы товаров
+    function initProductsPage() {
+      setupTabs();
+      setupCategoriesDropdown();
+      
+      // Обработчики для поиска
+      document.getElementById('searchInputProducts').addEventListener('input', (e) => {
+        searchProducts(e.target.value);
+      });
+      
+      // Обработчик для сортировки
+      document.getElementById('sortSelect').addEventListener('change', (e) => {
+        sortProducts(e.target.value);
+      });
+    }
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', initProductsPage);
 </script>
 </body>
 </html>
