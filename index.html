@@ -2601,833 +2601,478 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
 <script>
-    // ===== ОСНОВНЫЕ ФУНКЦИИ =====
-    function triggerVibration(pattern = [50]) {
-      try {
-        if (window.Telegram?.WebApp?.HapticFeedback?.impactOccurred) {
-          Telegram.WebApp.HapticFeedback.impactOccurred('light');
-        } else if ('vibrate' in navigator) {
-          navigator.vibrate(pattern);
-        } else {
-          console.log("Vibration triggered");
-        }
-      } catch (e) {
-        console.warn('Vibration not supported', e);
+  // ===== ОБЩИЕ ФУНКЦИИ =====
+  function triggerVibration(pattern = [50]) {
+    try {
+      if (window.Telegram?.WebApp?.HapticFeedback?.impactOccurred) {
+        Telegram.WebApp.HapticFeedback.impactOccurred('light');
+      } else if ('vibrate' in navigator) {
+        navigator.vibrate(pattern);
       }
+    } catch (e) {
+      console.warn('Vibration not supported', e);
     }
+  }
 
-    // Инициализация данных пользователя Telegram
-    function initUserData() {
-      // Проверяем, что WebApp Telegram доступен
-      if (window.Telegram && Telegram.WebApp) {
-        console.log("Telegram WebApp detected");
+  // ===== ИНИЦИАЛИЗАЦИЯ ПОЛЬЗОВАТЕЛЯ =====
+  function initUserData() {
+    // Проверяем, что WebApp Telegram доступен
+    if (window.Telegram && Telegram.WebApp) {
+      const user = Telegram.WebApp.initDataUnsafe?.user;
+      
+      if (user) {
+        // Устанавливаем имя пользователя
+        const username = user.first_name || user.username || 'Пират';
+        document.getElementById('username').textContent = username;
+        document.getElementById('profile-username').textContent = username;
         
-        // Инициализируем WebApp
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
+        // Устанавливаем аватар
+        const avatarUrl = user.photo_url;
+        const avatarElement = document.getElementById('avatar');
+        const profileAvatarElement = document.getElementById('profile-avatar-img');
         
-        // Получаем данные пользователя
-        const user = Telegram.WebApp.initDataUnsafe?.user;
-        
-        if (user) {
-          console.log("User data:", user);
-          
-          // Устанавливаем имя пользователя
-          const username = user.first_name || user.username || 'Пират';
-          document.getElementById('username').textContent = username;
-          document.getElementById('profile-username').textContent = username;
-          
-          // Устанавливаем аватар
-          const avatarUrl = user.photo_url;
-          const avatarElement = document.getElementById('avatar');
-          const profileAvatarElement = document.getElementById('profile-avatar-img');
-          
-          if (avatarUrl) {
-            console.log("Setting avatar from URL:", avatarUrl);
-            avatarElement.style.backgroundImage = `url(${avatarUrl})`;
-            avatarElement.style.backgroundSize = 'cover';
-            profileAvatarElement.style.backgroundImage = `url(${avatarUrl})`;
-            profileAvatarElement.style.backgroundSize = 'cover';
-          } else {
-            // Дефолтный аватар, если фото нет
-            console.log("Using default avatar");
-            const defaultAvatarColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
-            avatarElement.innerHTML = 
-              `<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="70" cy="70" r="70" fill="${defaultAvatarColor}"/>
-                <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">
-                  ${username.charAt(0).toUpperCase()}
-                </text>
-              </svg>`;
-            
-            profileAvatarElement.innerHTML = 
-              `<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="30" r="30" fill="${defaultAvatarColor}"/>
-                <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">
-                  ${username.charAt(0).toUpperCase()}
-                </text>
-              </svg>`;
-          }
-          
-          // Устанавливаем дату присоединения (примерная)
-          const joinDate = new Date(user.id * 1000);
-          document.getElementById('join-date').textContent = joinDate.toLocaleDateString('ru-RU');
-          
-          // Устанавливаем номер профиля (первые 4 цифры ID)
-          document.getElementById('profile-number').textContent = String(user.id).slice(0, 4);
-          
-          // Настраиваем кнопку "Назад" в Telegram
-          Telegram.WebApp.BackButton.show();
-          Telegram.WebApp.BackButton.onClick(handleBackButton);
-          
+        if (avatarUrl) {
+          avatarElement.style.backgroundImage = `url(${avatarUrl})`;
+          avatarElement.style.backgroundSize = 'cover';
+          profileAvatarElement.style.backgroundImage = `url(${avatarUrl})`;
+          profileAvatarElement.style.backgroundSize = 'cover';
         } else {
-          console.log("No user data available");
-          setupDemoData();
+          // Дефолтный аватар
+          const defaultAvatarColor = `hsl(${Math.floor(Math.random() * 360)}, 70%, 50%)`;
+          avatarElement.innerHTML = `
+            <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="70" cy="70" r="70" fill="${defaultAvatarColor}"/>
+              <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">
+                ${username.charAt(0).toUpperCase()}
+              </text>
+            </svg>`;
+          
+          profileAvatarElement.innerHTML = `
+            <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="30" cy="30" r="30" fill="${defaultAvatarColor}"/>
+              <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">
+                ${username.charAt(0).toUpperCase()}
+              </text>
+            </svg>`;
         }
+        
+        // Устанавливаем дату присоединения
+        const joinDate = new Date(user.id * 1000);
+        document.getElementById('join-date').textContent = joinDate.toLocaleDateString('ru-RU');
+        
+        // Устанавливаем номер профиля
+        document.getElementById('profile-number').textContent = String(user.id).slice(0, 4);
       } else {
-        console.log("Not in Telegram WebApp, using demo data");
         setupDemoData();
       }
-
-      // Загрузка сохраненного баланса
-      const savedBalance = localStorage.getItem('userBalance');
-      if (savedBalance) {
-        document.getElementById('balance').textContent = savedBalance;
-      } else {
-        localStorage.setItem('userBalance', '0');
-        document.getElementById('balance').textContent = '0';
-      }
+    } else {
+      setupDemoData();
     }
 
-    function setupDemoData() {
-      const username = "Капитан Джек";
-      document.getElementById('username').textContent = username;
-      document.getElementById('profile-username').textContent = username;
-      
-      const avatarElement = document.getElementById('avatar');
-      const profileAvatarElement = document.getElementById('profile-avatar-img');
-      
-      avatarElement.innerHTML = 
-        `<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="70" cy="70" r="70" fill="#2E2E2E"/>
-          <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-        </svg>`;
-      
-      profileAvatarElement.innerHTML = 
-        `<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="30" cy="30" r="30" fill="#2E2E2E"/>
-          <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
-        </svg>`;
-      
-      document.getElementById('join-date').textContent = new Date().toLocaleDateString('ru-RU');
-      document.getElementById('profile-number').textContent = '1234';
+    // Загрузка сохраненного баланса
+    const savedBalance = localStorage.getItem('userBalance') || '0';
+    document.getElementById('balance').textContent = savedBalance;
+  }
 
-      // Загрузка сохраненного баланса
-      const savedBalance = localStorage.getItem('userBalance');
-      if (savedBalance) {
-        document.getElementById('balance').textContent = savedBalance;
-      } else {
-        localStorage.setItem('userBalance', '0');
-        document.getElementById('balance').textContent = '0';
-      }
-    }
-
-    function handleBackButton() {
-      if (document.getElementById('expenses-page').style.display === 'block') {
-        hideExpensesPage();
-      } else if (document.getElementById('profile-page').style.display === 'block') {
-        hideProfilePage();
-      } else if (document.getElementById('payment-page').style.display === 'block') {
-        hidePaymentPage();
-      } else if (document.getElementById('modal').classList.contains('show')) {
-        hideAddCardModal();
-      } else if (document.getElementById('career-popup-overlay').style.display === 'flex') {
-        closeCareerPopup();
-      }
-    }
-
-    // Управление страницами
-    function showExpensesPage() {
-      document.getElementById('expenses-page').style.display = 'block';
-      document.getElementById('cabinet-page').style.display = 'none';
-      triggerVibration();
-      initExpensesCalendar();
-    }
-
-    function hideExpensesPage() {
-      document.getElementById('expenses-page').style.display = 'none';
-      document.getElementById('cabinet-page').style.display = 'block';
-      triggerVibration();
-    }
-
-    function showProfilePage() {
-      document.getElementById('profile-page').style.display = 'block';
-      document.getElementById('cabinet-page').style.display = 'none';
-      triggerVibration();
-    }
-
-    function hideProfilePage() {
-      document.getElementById('profile-page').style.display = 'none';
-      document.getElementById('cabinet-page').style.display = 'block';
-      triggerVibration();
-    }
-
-    function showPaymentPage() {
-      document.getElementById('payment-page').style.display = 'block';
-      document.getElementById('cabinet-page').style.display = 'none';
-      triggerVibration();
-      initPaymentPage();
-    }
-
-    function hidePaymentPage() {
-      document.getElementById('payment-page').style.display = 'none';
-      document.getElementById('cabinet-page').style.display = 'block';
-      triggerVibration();
-    }
-
-    function showAddCardModal() {
-      document.getElementById('modal').classList.add('show');
-      document.getElementById('cardNumberInput').focus();
-      // Очищаем поля при открытии
-      document.getElementById('cardNumberInput').value = '';
-      document.getElementById('cardHolderInput').value = '';
-      document.getElementById('cardExpiryInput').value = '';
-      document.getElementById('cardCvcInput').value = '';
-      document.getElementById('cardBrand').textContent = '';
-      document.getElementById('cardBrand').classList.remove('show');
-      triggerVibration();
-    }
-
-    function hideAddCardModal() {
-      document.getElementById('modal').classList.remove('show');
-    }
-
-    function handleProfileClick(action) {
-      triggerVibration();
-      if (typeof action === 'string' && action.startsWith('http')) {
-        if (window.Telegram?.WebApp?.openLink) {
-          Telegram.WebApp.openLink(action);
-        } else {
-          window.open(action, '_blank');
-        }
-      } else {
-        console.log("Action:", action);
-      }
-    }
-
-    // Логика пиратской карьеры
-    const careerDescriptions = {
-      "Юнга": "Ты только что прибыл на корабль! Начало пиратского пути.",
-      "Крыса трюма": "Ты уже освоился на судне, но пока прячешься в трюме.",
-      "Корсар": "Ты стал настоящим пиратом и уже участвуешь в абордаже.",
-      "Штурман": "Ты прокладываешь курс команды и ведёшь корабль вперёд.",
-      "Бывалый пёс": "Ты повидал штормы, битвы и сокровища. Опытный ветеран!"
-    };
-
-    function changeLevel(level, buttonElement) {
-      const levelLabel = document.getElementById('level-label');
-      levelLabel.textContent = level;
-
-      const buttons = document.querySelectorAll('.career-button');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      buttonElement.classList.add('active');
-
-      // Показываем попап с описанием уровня
-      openCareerPopup(level);
-      triggerVibration();
-    }
-
-    function openCareerPopup(level) {
-      const overlay = document.getElementById('career-popup-overlay');
-      const title = document.getElementById('career-title');
-      const text = document.getElementById('career-text');
-      title.textContent = level;
-      text.textContent = careerDescriptions[level] || 'Информация отсутствует';
-      overlay.style.display = 'flex';
-      triggerVibration();
-    }
-
-    function closeCareerPopup() {
-      const overlay = document.getElementById('career-popup-overlay');
-      overlay.style.display = 'none';
-    }
-
-    // Логика календаря расходов
-    let currentDate = new Date();
+  function setupDemoData() {
+    const username = "Капитан Джек";
+    document.getElementById('username').textContent = username;
+    document.getElementById('profile-username').textContent = username;
     
-    function initExpensesCalendar() {
-      updateCalendar();
-      // Здесь можно добавить загрузку данных о расходах
-    }
+    const avatarElement = document.getElementById('avatar');
+    const profileAvatarElement = document.getElementById('profile-avatar-img');
     
-    function updateCalendar() {
-      const year = currentDate.getFullYear();
-      const month = currentDate.getMonth();
-      
-      document.getElementById('current-month').textContent = 
-        new Date(year, month).toLocaleDateString('ru-RU', { 
-          month: 'long', 
-          year: 'numeric' 
-        });
-      
-      const firstDay = new Date(year, month, 1);
-      const lastDay = new Date(year, month + 1, 0);
-      
-      const calendarBody = document.getElementById('calendar-body');
-      calendarBody.innerHTML = '';
-      
-      let date = 1;
-      for (let i = 0; i < 6; i++) {
-        if (date > lastDay.getDate()) break;
-        
-        const row = document.createElement('tr');
-        
-        for (let j = 0; j < 7; j++) {
-          const cell = document.createElement('td');
-          
-          if (i === 0 && j < firstDay.getDay()) {
-            // Пустые ячейки перед первым днем месяца
-            cell.textContent = '';
-          } else if (date > lastDay.getDate()) {
-            // Пустые ячейки после последнего дня месяца
-            cell.textContent = '';
-          } else {
-            cell.textContent = date;
-            
-            // Подсветка текущего дня
-            const today = new Date();
-            if (date === today.getDate() && 
-                month === today.getMonth() && 
-                year === today.getFullYear()) {
-              cell.style.border = '1px solid #d4af37';
-              cell.style.boxShadow = '0 0 5px #d4af37';
-            }
-            
-            date++;
-          }
-          
-          row.appendChild(cell);
-        }
-        
-        calendarBody.appendChild(row);
-      }
-    }
+    avatarElement.innerHTML = `
+      <svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="70" fill="#2E2E2E"/>
+        <text x="70" y="80" font-family="Arial" font-size="60" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
+      </svg>`;
     
-    function prevMonth() {
-      currentDate.setMonth(currentDate.getMonth() - 1);
-      updateCalendar();
-      triggerVibration();
-    }
+    profileAvatarElement.innerHTML = `
+      <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="30" fill="#2E2E2E"/>
+        <text x="30" y="35" font-family="Arial" font-size="30" fill="white" text-anchor="middle" dominant-baseline="middle">К</text>
+      </svg>`;
     
-    function nextMonth() {
-      currentDate.setMonth(currentDate.getMonth() + 1);
-      updateCalendar();
-      triggerVibration();
-    }
+    document.getElementById('join-date').textContent = new Date().toLocaleDateString('ru-RU');
+    document.getElementById('profile-number').textContent = '1234';
+    document.getElementById('balance').textContent = '0';
+  }
 
-    // Логика страницы пополнения
-    let cards = [];
-    let exchangeRate = 75;
-    let selectedCard = 0;
-    let currentSuccessModal = null;
-
-    // Цвета для разных типов карт
-    const cardColors = {
-      'VISA': ['#1a1a2e', '#16213e'],
-      'MC': ['#191919', '#3a3a3a'],
-      'AMEX': ['#006fcf', '#003f7f'],
-      'MIR': ['#1a3e8c', '#0d2b6b']
-    };
-
-    // Форматирование валюты
-    function formatCurrency(amount, currency) {
-      return new Intl.NumberFormat('ru-RU', {
-        style: 'currency',
-        currency: currency === '$' ? 'USD' : 'RUB',
-        currencyDisplay: 'symbol'
-      }).format(amount).replace(/\s/g, ' ');
-    }
-
-    // Динамическая комиссия
-    function calculateCommission(amount) {
-      if (amount <= 1000) return 0.03; // 3%
-      if (amount <= 5000) return 0.025; // 2.5%
-      return 0.02; // 2%
-    }
-
-    // Рендер карусели карт
-    function renderCarousel() {
-      const carousel = document.getElementById('carousel');
-      carousel.innerHTML = '';
-      
-      cards.forEach((card, index) => {
-        const container = document.createElement('div');
-        container.className = 'card-container';
-        container.style.transitionDelay = `${index * 0.1}s`;
-        
-        const cardElement = document.createElement('div');
-        cardElement.className = 'card';
-        cardElement.dataset.index = index;
-        cardElement.dataset.id = card.id;
-        
-        cardElement.innerHTML = `
-          <div class="card-front" style="background: linear-gradient(145deg, ${cardColors[card.brand]?.[0] || '#141414'}, ${cardColors[card.brand]?.[1] || '#0a0a0a'});">
-            <div class="top">
-              <div class="chip">💳</div>
-              <div class="network">${card.brand}</div>
-            </div>
-            <div class="number">${card.number}</div>
-            <div class="holder">${card.holder} ${card.expiry}</div>
-          </div>
-          <div class="card-back">
-            <div class="top">
-              <div class="network">${card.brand}</div>
-            </div>
-            <div class="card-cvc">${card.cvc}</div>
-            <div class="card-number-back">${card.fullNumber.replace(/\d(?=\d{4})/g, '*')}</div>
-          </div>
-        `;
-        
-        cardElement.addEventListener('click', (e) => {
-      if (e.target.closest('.btn')) return;
-      
-      if (cardElement.classList.contains('flipped')) {
-        cardElement.classList.remove('flipped');
-        triggerVibration([30]);
-      } else {
-        cardElement.classList.add('flipped');
-        triggerVibration([50, 30]);
-        
-        setTimeout(() => {
-          if (cardElement.classList.contains('flipped')) {
-            cardElement.classList.remove('flipped');
-          }
-        }, 5000);
-      }
+  // ===== УПРАВЛЕНИЕ СТРАНИЦАМИ =====
+  function showPage(pageId) {
+    // Список всех страниц
+    const pages = ['main-page', 'cabinet-page', 'treasure-page', 'storage-page', 'expenses-page', 'profile-page', 'products-page'];
+    
+    // Скрываем все страницы
+    pages.forEach(id => {
+      const page = document.getElementById(id);
+      if (page) page.style.display = 'none';
     });
     
-    container.appendChild(cardElement);
-    carousel.appendChild(container);
+    // Показываем только нужную страницу
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+      targetPage.style.display = 'block';
+      
+      // Для страницы клада используем flex
+      if (pageId === 'treasure-page') {
+        targetPage.style.display = 'flex';
+      }
+    }
+    
+    triggerVibration();
+  }
+
+  function updateActiveNav(activeItem) {
+    const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      const indicator = item.querySelector('.active-indicator');
+      if (indicator) indicator.remove();
+    });
+    
+    if (activeItem) {
+      activeItem.classList.add('active');
+      const indicator = document.createElement('div');
+      indicator.className = 'active-indicator';
+      activeItem.appendChild(indicator);
+    }
+  }
+
+  // Обработчики для навигации
+  document.getElementById('cabinet-nav-item').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPage('cabinet-page');
+    updateActiveNav(this);
+  });
+
+  document.getElementById('treasure-nav-item').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPage('treasure-page');
+    updateActiveNav(this);
+  });
+
+  document.getElementById('storage-nav-item').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPage('storage-page');
+    updateActiveNav(this);
+  });
+
+  // ===== КАЮТА =====
+  const careerDescriptions = {
+    "Юнга": "Ты только что прибыл на корабль! Начало пиратского пути.",
+    "Крыса трюма": "Ты уже освоился на судне, но пока прячешься в трюме.",
+    "Корсар": "Ты стал настоящим пиратом и уже участвуешь в абордаже.",
+    "Штурман": "Ты прокладываешь курс команды и ведёшь корабль вперёд.",
+    "Бывалый пёс": "Ты повидал штормы, битвы и сокровища. Опытный ветеран!"
+  };
+
+  function changeLevel(level, buttonElement) {
+    const levelLabel = document.getElementById('level-label');
+    levelLabel.textContent = level;
+
+    const buttons = document.querySelectorAll('.career-button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    buttonElement.classList.add('active');
+
+    openCareerPopup(level);
+    triggerVibration();
+  }
+
+  function openCareerPopup(level) {
+    const overlay = document.getElementById('career-popup-overlay');
+    const title = document.getElementById('career-title');
+    const text = document.getElementById('career-text');
+    title.textContent = level;
+    text.textContent = careerDescriptions[level] || 'Информация отсутствует';
+    overlay.style.display = 'flex';
+    triggerVibration();
+  }
+
+  function closeCareerPopup() {
+    const overlay = document.getElementById('career-popup-overlay');
+    overlay.style.display = 'none';
+  }
+
+  function showExpensesPage() {
+    showPage('expenses-page');
+    initExpensesCalendar();
+  }
+
+  function showProfilePage() {
+    showPage('profile-page');
+  }
+
+  // ===== ДОЖДЬ =====
+  function initRain() {
+    const rainContainer = document.querySelector('.rain');
+    const dropsCount = 100;
+
+    for(let i = 0; i < dropsCount; i++) {
+      const drop = document.createElement('div');
+      drop.classList.add('drop');
+      drop.style.left = Math.random() * 100 + 'vw';
+      drop.style.animationDuration = (0.5 + Math.random()) + 's';
+      drop.style.animationDelay = (Math.random() * 5) + 's';
+      const width = 1 + Math.random() * 2;
+      drop.style.width = width + 'px';
+      drop.style.height = 10 + Math.random() * 15 + 'px';
+      rainContainer.appendChild(drop);
+    }
+  }
+
+  // ===== КАРУСЕЛЬ =====
+  function initCarousel() {
+    const carousel = document.getElementById('carousel');
+    const cards = carousel.querySelectorAll('.card');
+    let index = 0;
+
+    function updateDots() {
+      cards.forEach((card, cardIndex) => {
+        const dots = card.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      });
+    }
+
+    function scrollToCard(i) {
+      const card = cards[i];
+      if (card) {
+        carousel.scrollTo({
+          left: card.offsetLeft,
+          behavior: 'smooth',
+        });
+        index = i;
+        updateDots();
+      }
+    }
+
+    // Автопрокрутка каждые 4 секунды
+    const intervalId = setInterval(() => {
+      index = (index + 1) % cards.length;
+      scrollToCard(index);
+    }, 4000);
+
+    // Обработчик ручной прокрутки
+    carousel.addEventListener('scroll', () => {
+      const scrollLeft = carousel.scrollLeft;
+      let closestIndex = 0;
+      let minDiff = Infinity;
+      
+      cards.forEach((card, i) => {
+        const diff = Math.abs(card.offsetLeft - scrollLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIndex = i;
+        }
+      });
+      
+      index = closestIndex;
+      updateDots();
+    });
+
+    // Обработчики для точек
+    cards.forEach((card, cardIndex) => {
+      const dots = card.querySelectorAll('.dot');
+      dots.forEach((dot, dotIndex) => {
+        dot.addEventListener('click', () => {
+          clearInterval(intervalId); // Останавливаем автоскролл
+          scrollToCard(dotIndex);
+          
+          // Перезапускаем автоскролл через 10 секунд
+          setTimeout(() => {
+            intervalId = setInterval(() => {
+              index = (index + 1) % cards.length;
+              scrollToCard(index);
+            }, 4000);
+          }, 10000);
+        });
+      });
+    });
+
+    // Анимация появления карточек
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    
+    cards.forEach(card => observer.observe(card));
+
+    updateDots();
+  }
+
+  // ===== ПОИСК =====
+  function initSearch() {
+    const searchInput = document.getElementById("searchInput");
+    const searchContainer = document.getElementById("searchContainer");
+    const cancelButton = document.getElementById("cancelButton");
+
+    searchInput.addEventListener("focus", () => {
+      cancelButton.classList.add("visible");
+    });
+
+    cancelButton.addEventListener("click", () => {
+      searchInput.value = "";
+      searchInput.blur();
+      cancelButton.classList.remove("visible");
+      removeGlow();
+    });
+
+    searchInput.addEventListener("blur", () => {
+      setTimeout(() => {
+        if (searchInput.value.trim() === "") {
+          cancelButton.classList.remove("visible");
+          removeGlow();
+        }
+      }, 150);
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        if (searchInput.value.trim() !== "") {
+          startGlow();
+        }
+      }
+    });
+
+    function startGlow() {
+      searchContainer.classList.add("glowing");
+      setTimeout(() => {
+        removeGlow();
+      }, 1500);
+    }
+
+    function removeGlow() {
+      searchContainer.classList.remove("glowing");
+    }
+  }
+
+  // ===== СТРАНИЦА ТОВАРОВ =====
+  let productsPageVisible = false;
+
+  function showProductsPage() {
+    productsPageVisible = true;
+    const bottomNav = document.querySelector('.bottom-nav');
+    const productsPage = document.getElementById('products-page');
+    
+    bottomNav.style.transition = 'transform 0.4s cubic-bezier(0.28, 0.11, 0.32, 1)';
+    bottomNav.style.transform = 'translateY(100%)';
+    
+    productsPage.style.display = 'block';
+    productsPage.style.opacity = '0';
+    productsPage.style.transform = 'translateY(100%)';
+    productsPage.style.transition = 'transform 0.4s cubic-bezier(0.28, 0.11, 0.32, 1), opacity 0.3s';
     
     setTimeout(() => {
-      container.classList.add('visible');
-    }, 50);
-  });
-  
-  scrollToCard(selectedCard);
-}
-
-// Скролл к выбранной карте
-function scrollToCard(index) {
-  const carousel = document.getElementById('carousel');
-  const card = carousel.children[index];
-  if (card) {
-    card.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-  }
-}
-
-// Форматирование номера карты
-function formatCardNumber(value) {
-  const v = value.replace(/\D/g,'').substring(0,16);
-  const parts = [];
-  for (let i = 0; i < v.length; i += 4) {
-    parts.push(v.substring(i, i + 4));
-  }
-  return parts.join(' ').trim();
-}
-
-// Автоматическое определение бренда карты
-function detectCardBrand(number) {
-  const num = number.replace(/\D/g,'');
-  const brands = {
-    'VISA': /^4/,
-    'MASTERCARD': /^5[1-5]/,
-    'AMEX': /^3[47]/,
-    'MIR': /^2/,
-    'JCB': /^(2131|1800|35)/,
-    'DINERS': /^(36|38|30[0-5])/,
-    'DISCOVER': /^(6011|65|64[4-9])/
-  };
-  
-  for (const [brand, regex] of Object.entries(brands)) {
-    if (regex.test(num)) {
-      document.getElementById('cardBrand').textContent = brand;
-      document.getElementById('cardBrand').classList.add('show');
-      return brand;
-    }
-  }
-  
-  document.getElementById('cardBrand').textContent = '';
-  document.getElementById('cardBrand').classList.remove('show');
-  return '';
-}
-
-// Обновление сумм
-function updateAmounts() {
-  const amount = parseFloat(document.getElementById('amountInput').value) || 0;
-  const commissionRate = calculateCommission(amount);
-  const commission = amount * commissionRate;
-  const net = amount - commission;
-  const usd = net / exchangeRate;
-  
-  document.getElementById('entered').textContent = formatCurrency(amount, '₽');
-  document.getElementById('commission').textContent = `${(commissionRate * 100).toFixed(1)}% (${formatCurrency(commission, '₽')})`;
-  document.getElementById('net').textContent = formatCurrency(net, '₽');
-  document.getElementById('usd').textContent = formatCurrency(usd, '$');
-}
-
-// Дебаунс
-function debounce(func, timeout = 300) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => func.apply(this, args), timeout);
-  };
-}
-
-// Получение курса валют
-async function fetchExchangeRate() {
-  const cache = localStorage.getItem('exchangeRateCache');
-  const now = Date.now();
-  
-  if (cache) {
-    const { rate, timestamp } = JSON.parse(cache);
-    if (now - timestamp < 3600000) { // 1 час кэша
-      return rate;
+      productsPage.style.opacity = '1';
+      productsPage.style.transform = 'translateY(0)';
+    }, 10);
+    
+    if (document.getElementById('productsFeed').children.length === 0) {
+      loadProductsData();
     }
   }
 
-  try {
-    const rate = 75; // Заглушка для демонстрации
-    localStorage.setItem('exchangeRateCache', JSON.stringify({
-      rate,
-      timestamp: now
-    }));
-    return rate;
-  } catch {
-    return 75;
+  function hideProductsPage() {
+    productsPageVisible = false;
+    const productsPage = document.getElementById('products-page');
+    const bottomNav = document.querySelector('.bottom-nav');
+    
+    productsPage.style.transform = 'translateY(100%)';
+    productsPage.style.opacity = '0';
+    
+    setTimeout(() => {
+      productsPage.style.display = 'none';
+      bottomNav.style.transform = 'translateY(0)';
+    }, 400);
   }
-}
 
-// Инициализация страницы пополнения
-async function initPaymentPage() {
-  exchangeRate = await fetchExchangeRate();
-  
-  // Загрузка сохраненных карт из localStorage
-  const storedCards = localStorage.getItem('userCards');
-  cards = storedCards ? JSON.parse(storedCards) : [
-    { 
-      id: '1', 
-      number: '•••• •••• •••• 3456', 
-      holder: 'IVAN IVANOV', 
-      expiry: '09/27', 
-      brand: 'VISA',
-      cvc: '123',
-      fullNumber: '4111111111111111'
-    },
-    { 
-      id: '2', 
-      number: '•••• •••• •••• 7890', 
-      holder: 'PETER PETROV', 
-      expiry: '11/26', 
-      brand: 'MC',
-      cvc: '456',
-      fullNumber: '5555555555554444'
-    }
-  ];
-
-  renderCarousel();
-  initPaymentEventListeners();
-  updateAmounts();
-}
-
-// Инициализация обработчиков событий для страницы пополнения
-function initPaymentEventListeners() {
-  // Удаляем старые обработчики, если они есть
-  const oldPayBtn = document.getElementById('payBtn');
-  const newPayBtn = oldPayBtn.cloneNode(true);
-  oldPayBtn.parentNode.replaceChild(newPayBtn, oldPayBtn);
-
-  // Быстрый выбор суммы
-  document.querySelectorAll('.quick-amount').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('amountInput').value = btn.dataset.amount;
-      updateAmounts();
-      triggerVibration();
-    });
+  // ===== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ =====
+  document.addEventListener('DOMContentLoaded', function() {
+    initUserData();
+    initRain();
+    initCarousel();
+    initSearch();
+    
+    // Показываем главную страницу по умолчанию
+    showPage('main-page');
+    updateActiveNav(null);
+    
+    // Инициализация свайпа для страницы товаров
+    initSwipeForProducts();
   });
 
-  // Ввод суммы
-  document.getElementById('amountInput').addEventListener('input', debounce(updateAmounts));
+  function initSwipeForProducts() {
+    let startY, currentY, isSwipingUp = false;
+    const mainPage = document.getElementById('main-page');
+    const productsPage = document.getElementById('products-page');
 
-  // Кнопка пополнения
-  document.getElementById('payBtn').addEventListener('click', async function() {
-    const amount = parseFloat(document.getElementById('amountInput').value);
-    
-    if (!amount || amount <= 0) {
-      alert('Введите сумму пополнения');
-      return;
-    }
-    
-    if (cards.length === 0) {
-      alert('Добавьте карту для пополнения');
-      return;
-    }
-    
-    // Показываем индикатор загрузки
-    const payBtn = document.getElementById('payBtn');
-    payBtn.disabled = true;
-    payBtn.classList.add('loading');
-    
-    try {
-      // Имитация запроса к серверу
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Удаляем предыдущее модальное окно, если оно есть
-      if (currentSuccessModal) {
-        currentSuccessModal.remove();
+    // Обработчик свайпа вверх на главной странице
+    mainPage.addEventListener('touchstart', (e) => {
+      if (window.scrollY <= 0 && !productsPageVisible) {
+        startY = e.touches[0].clientY;
+        isSwipingUp = true;
       }
-      
-      // Успешный платеж
-      currentSuccessModal = document.createElement('div');
-      currentSuccessModal.className = 'modal success-modal';
-      currentSuccessModal.innerHTML = document.getElementById('successModalTemplate').innerHTML;
-      
-      document.getElementById('successAmountText').textContent = 
-        `Сумма: ${formatCurrency(amount, '₽')}`;
-      
-      document.body.appendChild(currentSuccessModal);
-      setTimeout(() => currentSuccessModal.classList.add('show'), 10);
-      
-      // Обновляем баланс в каюте
-      const currentBalance = parseInt(localStorage.getItem('userBalance')) || 0;
-      const newBalance = currentBalance + amount;
-      document.getElementById('balance').textContent = newBalance;
-      
-      // Сохраняем баланс в localStorage
-      localStorage.setItem('userBalance', newBalance.toString());
-      
-      // Анимация успешного платежа
-      payBtn.classList.remove('loading');
-      payBtn.classList.add('payment-success');
-      setTimeout(() => {
-        payBtn.classList.remove('payment-success');
-      }, 600);
-      
-      // Вибрация успеха
-      triggerVibration([100, 30, 100]);
-      
-      // Обработка закрытия success modal
-      const okButton = currentSuccessModal.querySelector('.pay');
-      okButton.onclick = () => {
-        currentSuccessModal.classList.remove('show');
-        setTimeout(() => {
-          currentSuccessModal.remove();
-          currentSuccessModal = null;
-        }, 300);
-        payBtn.disabled = false;
-        document.getElementById('amountInput').value = '';
-        updateAmounts();
-      };
-      
-    } catch (error) {
-      alert('Ошибка при обработке платежа');
-      payBtn.classList.remove('loading');
-      payBtn.disabled = false;
-    }
-  });
+    }, { passive: true });
 
-  // Форматирование номера карты
-  document.getElementById('cardNumberInput').addEventListener('input', (e) => {
-    const formatted = formatCardNumber(e.target.value);
-    if (e.target.value !== formatted) {
-      e.target.value = formatted;
-    }
-    detectCardBrand(e.target.value);
-  });
-
-  // Фиксированный ввод имени держателя
-  document.getElementById('cardHolderInput').addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/[^A-Za-z\s]/g, '').toUpperCase();
-  });
-
-  // Форматирование срока действия
-  document.getElementById('cardExpiryInput').addEventListener('input', (e) => {
-    const value = e.target.value.replace(/\D/g,'');
-    if (value.length > 2) {
-      e.target.value = `${value.substring(0,2)}/${value.substring(2,4)}`;
-    } else {
-      e.target.value = value;
-    }
-  });
-
-  // Ввод CVC/CVV
-  document.getElementById('cardCvcInput').addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4);
-  });
-
-  // Сохранение карты
-  document.getElementById('saveCardBtn').addEventListener('click', () => {
-    const number = document.getElementById('cardNumberInput').value.trim();
-    const holder = document.getElementById('cardHolderInput').value.trim().toUpperCase();
-    const expiry = document.getElementById('cardExpiryInput').value.trim();
-    const cvc = document.getElementById('cardCvcInput').value.trim();
-    const brand = detectCardBrand(number) || 'UNKNOWN';
-
-    if (!number || number.replace(/\D/g,'').length < 16) {
-      alert('Введите корректный номер карты (16 цифр)');
-      return;
-    }
-    if (!holder) {
-      alert('Введите имя держателя карты');
-      return;
-    }
-    if (!expiry || !/^\d{2}\/\d{2}$/.test(expiry)) {
-      alert('Введите срок действия в формате MM/YY');
-      return;
-    }
-    if (!cvc || cvc.length < 3) {
-      alert('Введите корректный CVC/CVV код');
-      return;
-    }
-
-    // Форматируем номер для отображения
-    const maskedNumber = '•••• •••• •••• ' + number.slice(-4);
-    
-    // Проверяем, есть ли уже такая карта
-    const existingIndex = cards.findIndex(c => 
-      c.fullNumber === number.replace(/\D/g, '')
-    );
-    
-    if (existingIndex >= 0) {
-      // Обновляем существующую карту
-      cards[existingIndex] = {
-        ...cards[existingIndex],
-        holder,
-        expiry,
-        cvc,
-        brand
-      };
-      alert('Карта обновлена');
-    } else {
-      // Добавляем новую карту
-      const newCard = {
-        id: Date.now().toString(),
-        number: maskedNumber,
-        holder,
-        expiry,
-        brand,
-        cvc,
-        fullNumber: number.replace(/\D/g, '')
-      };
-      cards.push(newCard);
-      alert('Карта добавлена');
-    }
-    
-    // Сохраняем в localStorage
-    localStorage.setItem('userCards', JSON.stringify(cards));
-    
-    // Обновляем карусель
-    renderCarousel();
-    
-    // Закрываем модальное окно
-    hideAddCardModal();
-    triggerVibration();
-  });
-
-  // Удаление карты
-  document.getElementById('deleteCardBtn').addEventListener('click', () => {
-    const number = document.getElementById('cardNumberInput').value.trim();
-    const cardIndex = cards.findIndex(c => 
-      c.fullNumber === number.replace(/\D/g, '')
-    );
-    
-    if (cardIndex >= 0) {
-      cards.splice(cardIndex, 1);
-      localStorage.setItem('userCards', JSON.stringify(cards));
-      alert('Карта удалена');
-      renderCarousel();
-      hideAddCardModal();
-      triggerVibration([50, 30, 50]);
-    } else {
-      alert('Карта не найдена');
-    }
-  });
-
-  // Голосовой ввод суммы
-  document.getElementById('voiceInputBtn').addEventListener('click', () => {
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'ru-RU';
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+    mainPage.addEventListener('touchmove', (e) => {
+      if (!isSwipingUp) return;
       
-      recognition.onresult = (e) => {
-        const transcript = e.results[0][0].transcript;
-        const amount = parseFloat(transcript.replace(',', '.').replace(/[^\d.]/g, ''));
-        if (!isNaN(amount)) {
-          document.getElementById('amountInput').value = amount.toFixed(2);
-          updateAmounts();
-          triggerVibration([50, 30]);
-        } else {
-          alert('Не удалось распознать сумму');
+      currentY = e.touches[0].clientY;
+      const deltaY = startY - currentY;
+      
+      if (deltaY > 50) {
+        e.preventDefault();
+        showProductsPage();
+        isSwipingUp = false;
+      }
+    }, { passive: false });
+
+    // Обработчик свайпа вниз на странице товаров
+    productsPage.addEventListener('touchstart', (e) => {
+      if (productsPageVisible && window.scrollY <= 0) {
+        startY = e.touches[0].clientY;
+        productsPage.classList.add('swipe-active');
+      }
+    }, { passive: true });
+
+    productsPage.addEventListener('touchmove', (e) => {
+      if (!productsPageVisible) return;
+      
+      currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      
+      if (window.scrollY <= 0) {
+        if (deltaY > 0) {
+          e.preventDefault();
+          productsPage.style.opacity = `${1 - deltaY / 300}`;
         }
-      };
-      
-      recognition.onerror = (e) => {
-        alert('Ошибка распознавания: ' + e.error);
-      };
-      
-      recognition.start();
-      triggerVibration([30]);
-    } else {
-      alert('Голосовой ввод не поддерживается вашим браузером');
-    }
-  });
-
-  // Кнопки навигации по картам
-  document.getElementById('prevBtn').onclick = () => {
-    selectedCard = Math.max(0, selectedCard - 1);
-    scrollToCard(selectedCard);
-    triggerVibration([20]);
-  };
-
-  document.getElementById('nextBtn').onclick = () => {
-    selectedCard = Math.min(cards.length - 1, selectedCard + 1);
-    scrollToCard(selectedCard);
-    triggerVibration([20]);
-  };
-
-  // Кнопка добавления карты
-  document.getElementById('enterDataBtn').onclick = () => {
-    showAddCardModal();
-  };
-
-  // Закрытие модальных окон по клику на фон
-  document.getElementById('modal').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('modal')) {
-      hideAddCardModal();
-    }
-  });
-
-  // Закрытие модальных окон по ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (document.getElementById('modal').classList.contains('show')) {
-        hideAddCardModal();
       }
-      if (document.getElementById('career-popup-overlay').style.display === 'flex') {
-        closeCareerPopup();
-      }
-    }
-  });
-}
+    }, { passive: false });
 
-// Инициализация при загрузке
-document.addEventListener('DOMContentLoaded', function() {
-  initUserData();
-  updateCalendar();
-});
- </script>
+    productsPage.addEventListener('touchend', (e) => {
+      if (!productsPageVisible) return;
+      
+      const deltaY = currentY - startY;
+      productsPage.classList.remove('swipe-active');
+      
+      if (deltaY > 100 && window.scrollY <= 0) {
+        hideProductsPage();
+      } else {
+        productsPage.style.opacity = '1';
+      }
+    });
+
+    document.addEventListener('touchend', () => {
+      isSwipingUp = false;
+    });
+  }
+</script>
 </body>
 </html>
